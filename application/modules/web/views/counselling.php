@@ -20,18 +20,24 @@
 
 
         </div>
-        <form class="uk-grid-small" uk-grid action="" method="post">
-            <div class="uk-width-1-2@s">
+        <form class="uk-grid-small" uk-grid action="<?php echo base_url('web/Home/send_message'); ?>" method="post">
+            <div class="uk-width-1-3@s">
                 <label class="uk-form-label">Name</label>
-                <input class="uk-input" type="text" value="<?php $this->session->userdata('username'); ?>">
+                <input class="uk-input" type="text" name="name" value="<?php echo $this->session->userdata('username'); ?>">
             </div>
-            <div class="uk-width-1-2@s">
+            <input type="hidden" name="user" value='<?php echo $this->session->userdata('userID'); ?>'>
+            <input type="hidden" name="type" value="counselling">
+            <div class="uk-width-1-3@s">
                 <label class="uk-form-label">Email</label>
-                <input class="uk-input" type="text" placeholder="Email">
+                <input class="uk-input" type="text" name="email" value="<?php echo $this->session->userdata('email'); ?>" required>
+            </div>
+            <div class="uk-width-1-3@s">
+                <label class="uk-form-label">Mobile</label>
+                <input class="uk-input" type="tel" name="mobile" value="<?php echo $this->session->userdata('phone'); ?>" required>
             </div>
             <div class="uk-width-1-1@s">
                 <label class="uk-form-label">Comment</label>
-                <textarea class="uk-textarea" placeholder="Enter Your Comments her..." style=" height:160px"></textarea>
+                <textarea class="uk-textarea" name="comment" placeholder="Enter Your Comments her..." required style=" height:160px"></textarea>
             </div>
             <div class="uk-grid-margin">
                 <input type="submit" value="submit" class="btn btn-default">

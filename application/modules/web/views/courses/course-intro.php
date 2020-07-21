@@ -1,6 +1,7 @@
 <!-- content -->
 <div class="page-content">
 
+
   <div class="course-details-wrapper topic-1 uk-light pt-5">
 
     <div class="container p-sm-0">
@@ -202,7 +203,7 @@
             <article class="uk-article">
               <?php echo $course->plan_description; ?>
               <?php if ($course->docid != '') { ?>
-                <a href="<?php echo base_url('web/Courses/download/') . $course->docid ?>" target="_blank" class="uk-width-1-1 btn btn-success transition-3d-hover"> <i class="uil-download"></i> Download </a>
+                <a href="<?php echo base_url('web/Courses/download/') . $course->docid ?>" class="uk-width-1-1 btn btn-success transition-3d-hover"> <i class="uil-download"></i> Download </a>
 
               <?php  } ?>
 
@@ -217,7 +218,7 @@
               <div class="review-summary-container">
                 <div class="review-summary-avg">
                   <div class="avg-number">
-                    4.8
+                    <?php echo $course->review ?>
                   </div>
                   <div class="review-star">
                     <div class="star-rating"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star half"></span></div>
@@ -230,20 +231,20 @@
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:95%"></div>
+                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[5] / $course->review_counter) * 100);  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
                       <div class="star-rating"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>
                     </div>
                     <div class="review-avgs">
-                      95 %
+                      <?php echo floor(($review_summary[5] / $course->review_counter) * 100);  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:80%"></div>
+                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[4] / $course->review_counter) * 100);  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -251,13 +252,13 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      80 %
+                      <?php echo floor(($review_summary[4] / $course->review_counter) * 100);  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:60%"></div>
+                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[3] / $course->review_counter) * 100);  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -265,13 +266,13 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      60 %
+                      <?php echo floor(($review_summary[3] / $course->review_counter) * 100);  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:45%"></div>
+                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[2] / $course->review_counter) * 100);  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -279,13 +280,13 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      45 %
+                      <?php echo floor(($review_summary[2] / $course->review_counter) * 100);  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:25%"></div>
+                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[1] / $course->review_counter) * 100);  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -293,7 +294,7 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      25 %
+                      <?php echo floor(($review_summary[1] / $course->review_counter) * 100);  ?> %
                     </div>
                   </div>
 
@@ -302,120 +303,39 @@
 
               </div>
             </div>
-
             <div class="comments">
-              <h4>Reviews <span class="comments-amount"> (4610) </span> </h4>
+              <h4>Reviews <span class="comments-amount"> <?php echo $course->review_counter ?> </span> </h4>
 
               <ul>
-                <li>
-                  <div class="comments-avatar"><img src="../assets/images/avatars/avatar-2.jpg" alt="">
-                  </div>
-                  <div class="comment-content">
-                    <div class="comment-by">Stella Johnson<span>Student</span>
-                      <div class="comment-stars">
-                        <div class="star-rating"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>
-                      </div>
+                <?php foreach ($review as $row) { ?>
+                  <li>
+                    <div class="comments-avatar"><img src="../assets/images/avatars/avatar-2.jpg" alt="">
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                      diam
-                      nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                      erat
-                      volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                      tation
-                      ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                      consequat.
-                    </p>
-                    <div class="comment-footer">
-                      <span> Was this review helpful? </span>
-                      <button> Yes </button>
-                      <button> No </button>
-                      <a href="#"> Report</a>
-                    </div>
-                  </div>
-
-                </li>
-
-                <li>
-                  <div class="comments-avatar"><img src="../assets/images/avatars/avatar-3.jpg" alt="">
-                  </div>
-                  <div class="comment-content">
-                    <div class="comment-by"> Adrian Mohani <span>Instructor </span>
-                      <div class="comment-stars">
-                        <div class="star-rating"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star half"></span>
+                    <div class="comment-content">
+                      <div class="comment-by"> <?php echo $row->name ?><span> <?php if ($row->type == 1) {
+                                                                                echo 'Kalka IAS Team';
+                                                                              } else {
+                                                                                echo 'Student';
+                                                                              } ?></span>
+                        <div class="comment-stars">
+                          <div class="star-rating">
+                            <?php for ($i = 1; $i < $row->rating; $i++) { ?>
+                              <span class="star">
+                              <?php } ?></div>
                         </div>
                       </div>
-                    </div>
-                    <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                      ullamcorper
-                      suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam
-                      liber
-                      tempor cum soluta nobis eleifend
-                    </p>
-                    <div class="comment-footer">
-                      <span> Was this review helpful? </span>
-                      <button> Yes </button>
-                      <button> No </button>
-                      <a href="#"> Report</a>
-                    </div>
-                  </div>
-
-                </li>
-
-                <li>
-                  <div class="comments-avatar"><img src="../assets/images/avatars/avatar-3.jpg" alt="">
-                  </div>
-                  <div class="comment-content">
-                    <div class="comment-by"> Adrian Mohani <span>Student</span>
-                      <div class="comment-stars">
-                        <div class="star-rating"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>
+                      <p> <?php echo $row->comment ?>
+                      </p>
+                      <div class="comment-footer">
+                        <span> Was this review helpful? </span>
+                        <button> Yes </button>
+                        <button> No </button>
+                        <a href="#"> Report</a>
                       </div>
                     </div>
-                    <p> Nam liber tempor cum soluta nobis eleifend option congue nihil
-                      imperdiet doming id quod mazim placerat facer possim assum.
-                      Lorem
-                      ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                      nonummy
-                      nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                      volutpat.
-                    </p>
-                    <div class="comment-footer">
-                      <span> Was this review helpful? </span>
-                      <button> Yes </button>
-                      <button> No </button>
-                      <a href="#"> Report</a>
-                    </div>
-                  </div>
 
-                </li>
-
-                <li>
-                  <div class="comments-avatar"><img src="../assets/images/avatars/avatar-2.jpg" alt="">
-                  </div>
-                  <div class="comment-content">
-                    <div class="comment-by">Stella Johnson<span>Student</span>
-                      <div class="comment-stars">
-                        <div class="star-rating"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>
-                      </div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                      diam
-                      nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                      erat
-                      volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                      tation
-                      ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                      consequat.
-                    </p>
-                    <div class="comment-footer">
-                      <span> Was this review helpful? </span>
-                      <button> Yes </button>
-                      <button> No </button>
-                      <a href="#"> Report</a>
-                    </div>
-                  </div>
-
-                </li>
-
+                  </li>
+                <?php } ?>
               </ul>
 
             </div>
@@ -424,25 +344,27 @@
               <h3>Submit Review </h3>
               <ul>
                 <li>
-                  <div class="comments-avatar"><img src="../assets/images/avatars/avatar-2.jpg" alt="">
+                  <div class="comments-avatar"><img src="<?php echo base_url($this->session->userdata('image')); ?>" alt="">
                   </div>
                   <div class="comment-content">
-                    <form class="uk-grid-small" uk-grid action="" method="post">
+                    <form class="uk-grid-small" uk-grid action="<?php echo base_url('web/Courses/Add_review'); ?>" method="post">
+                      <label class="uk-form-label">Hi <?php echo $this->session->userdata('username'); ?>, Submit a review </label>
                       <div class="uk-width-1-1@s">
                         <label class="uk-form-label">Ratings</label>
-                        <textarea class="uk-textarea" placeholder="Enter Your Comments her..." style=" height:160px"></textarea>
+                        <select name="rating" class="uk-select">
+                          <option value="0"> select</option>
+                          <option value="1"> &#128530;</option>
+                          <option value="3">&#128529;&#128529;</option>
+                          <option value="3">&#128528;&#128528;&#128528;</option>
+                          <option value="4">&#128522;&#128522;&#128522;&#128522;</option>
+                          <option value="5">&#128512;&#128512;&#128512;&#128512;&#128512;</option>
+                        </select>
                       </div>
-                      <div class="uk-width-1-2@s">
-                        <label class="uk-form-label">Name</label>
-                        <input class="uk-input" type="text" value="<?php $this->session->userdata('username'); ?>">
-                      </div>
-                      <div class="uk-width-1-2@s">
-                        <label class="uk-form-label">Email</label>
-                        <input class="uk-input" type="text" placeholder="Email">
-                      </div>
+                      <input type="hidden" name="course" value='<?php echo $course->course_id ?>'>
+                      <input type="hidden" name="user" value='<?php echo $this->session->userdata('userID'); ?>'>
                       <div class="uk-width-1-1@s">
                         <label class="uk-form-label">Comment</label>
-                        <textarea class="uk-textarea" placeholder="Enter Your Comments her..." style=" height:160px"></textarea>
+                        <textarea class="uk-textarea" name='comment' placeholder="Enter Your Comments her..." style=" height:160px"></textarea>
                       </div>
                       <div class="uk-grid-margin">
                         <input type="submit" value="submit" class="btn btn-default">
@@ -463,7 +385,7 @@
         <div class="course-card-trailer" uk-sticky="top: 10 ;offset:95 ; media: @m ; bottom:true">
 
           <div class="course-thumbnail">
-            <img src="../assets/images/course/1.png" alt="">
+            <img src="<?php echo base_url($course->image)   ?>" alt="">
             <a class="play-button-trigger show" href="#trailer-modal" uk-toggle> </a>
           </div>
 
@@ -475,17 +397,12 @@
                 <h4> Trailer video </h4>
               </div>
               <div class="video-responsive">
-                <iframe src="https://www.youtube.com/embed/nOCXXHGMezU" class="uk-padding-remove" uk-video="automute: true" frameborder="0" allowfullscreen uk-responsive></iframe>
+                <!-- <iframe src="https://www.youtube.com/embed/nOCXXHGMezU" class="uk-padding-remove" uk-video="automute: true" frameborder="0" allowfullscreen uk-responsive></iframe> -->
               </div>
 
               <div class="uk-modal-body">
-                <h3>Build Responsive Websites </h3>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore
-                  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident,
-                  sunt
-                  in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h3><?php echo ucfirst($course->name); ?> </h3>
+                <p><?php echo $course->description; ?></p>
               </div>
             </div>
           </div>
@@ -493,19 +410,19 @@
           <div class="p-3">
 
             <p class="my-3 text-center">
-              <span class="uk-h1">₹ 12.99 </span>
-              <s class="uk-h4 text-muted">₹ 19.99 </s>
-              <s class="uk-h6 ml-1 text-muted">₹ 32.99 </s>
+              <span class="uk-h1">₹ <?php echo $course->discount   ?> </span>
+              <s class="uk-h4 text-muted">₹ <?php echo $course->price   ?> </s>
+
             </p>
 
             <p>24 Hours Left This price</p>
 
             <div class="uk-child-width-1-2 uk-grid-small mb-4" uk-grid>
               <div>
-                <a href="course-resume.html" class="uk-width-1-1 btn btn-default transition-3d-hover"> <i class="uil-play"></i> Start </a>
+                <a href="<?php echo base_url('demo/') . $course->course_id; ?>" class="uk-width-1-1 btn btn-default transition-3d-hover"> <i class="uil-play"></i> Start </a>
               </div>
               <div>
-                <a href="course-resume.html" class="btn btn-danger uk-width-1-1 transition-3d-hover"> <i class="uil-heart"></i> Add wishlist </a>
+                <a href="" class="btn btn-danger uk-width-1-1 transition-3d-hover"> <i class="uil-heart"></i> Add wishlist </a>
               </div>
             </div>
 
@@ -513,23 +430,26 @@
 
             <div class="uk-child-width-1-2 uk-grid-small" uk-grid>
               <div>
-                <span><i class="uil-youtube-alt"></i> 28 hours video</span>
+                <span><i class="uil-youtube-alt"></i> <?php echo $course->duration   ?> hours video</span>
               </div>
+
               <div>
-                <span> <i class="uil-award"></i> Certificate </span>
+                <span> <i class="uil-file-alt"></i> <?php echo $course->article   ?> Article </span>
               </div>
-              <div>
-                <span> <i class="uil-file-alt"></i> 12 Article </span>
-              </div>
-              <div>
-                <span> <i class="uil-video"></i> Watch Offline </span>
-              </div>
-              <div>
-                <span> <i class="uil-award"></i> Certificate </span>
-              </div>
-              <div>
-                <span> <i class="uil-clock-five"></i> Lifetime access </span>
-              </div>
+              <?php if ($course->certificate == 1) {   ?>
+                <div>
+                  <span> <i class="uil-award"></i> Certificate </span>
+                </div><?php }  ?>
+              <?php if ($course->offline == 1) {   ?>
+                <div>
+                  <span> <i class="uil-video"></i> Watch Offline </span>
+                </div>
+              <?php }  ?>
+              <?php if ($course->lifetime == 1) {   ?>
+                <div>
+                  <span> <i class="uil-clock-five"></i> Lifetime access </span>
+                </div>
+              <?php }  ?>
             </div>
           </div>
         </div>

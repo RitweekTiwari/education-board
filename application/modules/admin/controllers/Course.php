@@ -61,6 +61,22 @@ class Course extends CI_Controller {
 	 public function Add() {
 		if($_POST){
 			 $data=$_POST;
+			
+			 if(isset($data['certificate'])){
+				$certificate=1;
+			 }else{
+				$certificate = 0;
+			 }
+			if (isset($data['offline'])) {
+				$offline = 1;
+			}else{
+				$offline = 0;
+			}
+			if (isset($data['lifetime'])) {
+				$lifetime = 1;
+			}else{
+				$lifetime = 0;
+			}
 			 $id = $this->common_model->get_last_id('course');
 			 if ($data['submit'] == 'publish') {
 				 $course = [
@@ -70,6 +86,12 @@ class Course extends CI_Controller {
             'description' => $data['description'],
 			'course_type' => $data['course_type'],
 			'docid'=> $data['pdf'],
+					'duration'=> $data['duration'],
+					'article'=> $data['article'],
+					'certificate'=> $certificate,
+					'offline' => $offline,
+					'lifetime' => $lifetime,
+
 			'plan_description' => $data['plan_description'],
             'is_publish' => 1,
             'created_by' => $this->session->userdata('userID'),
@@ -81,6 +103,11 @@ class Course extends CI_Controller {
            'name' => $data['coursename'],
 					 'slug' => $data['slug'],
 		   'description' => $data['description'],
+					'duration' => $data['duration'],
+					'article' => $data['article'],
+					'certificate' => $certificate,
+					'offline' => $offline,
+					'lifetime' => $lifetime,
 					'docid' => $data['pdf'],
 					'plan_description' => $data['plan_description'],
 					 'course_type' => $data['course_type'],
@@ -110,6 +137,7 @@ class Course extends CI_Controller {
 	public function edit($id){
 		$data = array();
 		$data['page'] = 'Edit Course';
+		$data['pdf'] =  $this->course_model->select_list();
 		$data['tag']=  $this->common_model->select('tags');
 		$data['category']=  $this->common_model->select('category');
 		$data['course'] = $this->course_model->select_by_id($id);
@@ -123,12 +151,35 @@ class Course extends CI_Controller {
 	public function update(){
 		if($_POST){
 			 $data=$this->security->xss_clean($_POST);
+			if (isset($data['certificate'])) {
+				$certificate = 1;
+			} else {
+				$certificate = 0;
+			}
+			if (isset($data['offline'])) {
+				$offline = 1;
+			} else {
+				$offline = 0;
+			}
+			if (isset($data['lifetime'])) {
+				$lifetime = 1;
+			} else {
+				$lifetime = 0;
+			}
 			 if ($data['submit'] == 'publish') {
 				 $course = [
             'name' => $data['coursename'],
 						'slug' => $data['slug'],
 						'created_by' => $this->session->userdata('userID'),
-            'description' => $data['description'],
+			'description' => $data['description'],
+					'docid' => $data['pdf'],
+					'duration' => $data['duration'],
+					'article' => $data['article'],
+					'certificate' => $certificate,
+					'offline' => $offline,
+					'lifetime' => $lifetime,
+
+					'plan_description' => $data['plan_description'],
 						'course_type' => $data['course_type'],
             'is_publish' => 1
         ];
@@ -137,6 +188,14 @@ class Course extends CI_Controller {
            'name' => $data['coursename'],
 					 'slug' => $data['slug'],
 					 'created_by' => $this->session->userdata('userID'),
+					'docid' => $data['pdf'],
+					'duration' => $data['duration'],
+					'article' => $data['article'],
+					'certificate' => $certificate,
+					'offline' => $offline,
+					'lifetime' => $lifetime,
+
+					'plan_description' => $data['plan_description'],
            'description' => $data['description'],
 					 'course_type' => $data['course_type'],
 					 'is_publish' => 0,
@@ -146,6 +205,14 @@ class Course extends CI_Controller {
            'name' => $data['coursename'],
 					 'slug' => $data['slug'],
 					 'course_type' => $data['course_type'],
+					'docid' => $data['pdf'],
+					'duration' => $data['duration'],
+					'article' => $data['article'],
+					'certificate' => $certificate,
+					'offline' => $offline,
+					'lifetime' => $lifetime,
+
+					'plan_description' => $data['plan_description'],
 					 'created_by' => $this->session->userdata('userID'),
            'description' => $data['description']
        	];
@@ -190,7 +257,8 @@ class Course extends CI_Controller {
 		$data['script'] = $this->load->view('layout/__curriculum.php', $data, true);
 		$this->load->view('index',$data);
 	}
-
+	
+	
 	public function add_curriculum() {
 	 	if($_POST){
 

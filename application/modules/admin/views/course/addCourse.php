@@ -16,6 +16,30 @@
 								<label class="login2">Course Description</label>
 								<textarea name="description" id="summernote1">Add a Description here</textarea>
 							</div>
+							<h4>This Course Include</h4>
+							<div class="form-group">
+								<div class='row'>
+									<div class="col-lg-6  col-xs-12">
+										<label class="login2">Course Duration(Hrs)</label>
+										<input name="duration" type="number" class="form-control">
+									</div>
+									<div class="col-lg-6  col-xs-12">
+										<label class="login2">Number of Articles </label>
+										<input name="article" type="number" class="form-control">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+
+								<label class="login2">Certificate</label>
+								<input name="certificate" type="checkbox">
+								<label class="login2">Lifetime Access</label>
+								<input name="lifetime" type="checkbox">
+								<label class="login2">Watch Offline</label>
+								<input name="offline" type="checkbox">
+
+							</div>
 							<h4>Add Course Planning</h4>
 
 
@@ -25,7 +49,7 @@
 							</div>
 							<div class="form-group res-mg-t-15">
 								<label class="login2">ADD PDF</label>
-								<select class="select2_demo_2 form-control" name='pdf' data-placeholder="Choose a PDF..." >
+								<select class="select2_demo_2 form-control" name='pdf' data-placeholder="Choose a PDF...">
 									<?php foreach ($pdf as $row) { ?>
 										<option value="<?php echo $row['docid'] ?>"> <?php echo $row['name'] ?> </option>
 									<?php } ?>
@@ -67,6 +91,7 @@
 									<?php } ?>
 								</select>
 							</div>
+
 							<div class="payment-adress">
 								<input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
 								<button type="submit" name='submit' value="save" class="btn btn-primary ">SAVE</button>

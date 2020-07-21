@@ -151,6 +151,7 @@ public function check_otp($data){
     function update($action,$field, $id, $table){
         $this->db->where($field,$id);
         $this->db->update($table,$action);
+    
         return true;
     }
 

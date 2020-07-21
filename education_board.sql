@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 21, 2020 at 08:28 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.2.24
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 15, 2020 at 03:02 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `address`
 --
 
-CREATE TABLE `address` (
-  `address_id` int(5) NOT NULL,
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE IF NOT EXISTS `address` (
+  `address_id` int(5) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(10) DEFAULT NULL,
   `house` varchar(32) DEFAULT NULL,
   `post` varchar(32) DEFAULT NULL,
@@ -37,8 +38,9 @@ CREATE TABLE `address` (
   `state` varchar(12) DEFAULT NULL,
   `city` varchar(12) DEFAULT NULL,
   `country` varchar(6) DEFAULT NULL,
-  `pincode` varchar(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `pincode` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `address`
@@ -56,10 +58,12 @@ INSERT INTO `address` (`address_id`, `user_id`, `house`, `post`, `dist`, `state`
 -- Table structure for table `aim`
 --
 
-CREATE TABLE `aim` (
-  `id` int(11) NOT NULL,
-  `title` varchar(32) CHARACTER SET utf8mb4 NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `aim`;
+CREATE TABLE IF NOT EXISTS `aim` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `aim`
@@ -78,11 +82,14 @@ INSERT INTO `aim` (`id`, `title`) VALUES
 -- Table structure for table `answers`
 --
 
-CREATE TABLE `answers` (
+DROP TABLE IF EXISTS `answers`;
+CREATE TABLE IF NOT EXISTS `answers` (
   `ansid` char(32) NOT NULL,
   `question` char(32) NOT NULL,
   `answers` text NOT NULL,
-  `userid` char(32) NOT NULL
+  `userid` char(32) NOT NULL,
+  PRIMARY KEY (`ansid`),
+  KEY `question` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -91,25 +98,37 @@ CREATE TABLE `answers` (
 -- Table structure for table `article`
 --
 
-CREATE TABLE `article` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE IF NOT EXISTS `article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `postid` char(6) CHARACTER SET utf8 NOT NULL,
   `title` text CHARACTER SET utf8 NOT NULL,
   `slug` varchar(128) CHARACTER SET utf8 DEFAULT NULL,
   `created_by` varchar(32) NOT NULL,
-  `content` text CHARACTER SET utf8 DEFAULT NULL,
+  `content` text CHARACTER SET utf8,
   `public_at` datetime DEFAULT NULL,
-  `is_publish` tinyint(1) NOT NULL DEFAULT 0,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`postid`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `article`
 --
 
 INSERT INTO `article` (`id`, `postid`, `title`, `slug`, `created_by`, `content`, `public_at`, `is_publish`, `deleted`, `created_at`) VALUES
-(12, 'post12', 'What is the difference between Coding and Programming?', '', 'AKIASZ001', '<h3 xss=removed>Nam Tempor Soluta Nobis Eleifend Option Assum.</h3><p xss=removed>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p><h4 xss=removed>5 Myths That Prevent Job Seekers From Overcoming Failure</h4><p xss=removed>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Cras suscipit, quam vitae adipiscing faucibus, risus nibh laoreet odio, a porttitor metus eros ut enim. Morbi augue velit, tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada. Ut lacus sapien, placerat a ornare nec, elementum sit amet felis. Maecenas pretium lorem hendrerit eros sagittis fermentum.</p><h4 xss=removed>5 Myths That Prevent Job Seekers From Overcoming Failure</h4><p xss=removed>Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus. Sed consequat justo non mauris pretium at tempor justo sodales. Quisque tincidunt laoreet malesuada. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae ante enim. Fusce sed elit est. Suspendisse sit amet mauris in quam pretium faucibus et aliquam odio.</p>', '2019-04-19 12:48:17', 1, 0, '2020-04-19 07:18:17');
+(12, 'post12', 'What is the difference between Coding and Programming?', '', 'AKIASZ001', '<h3 xss=removed>Nam Tempor Soluta Nobis Eleifend Option Assum.</h3><p xss=removed>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p><h4 xss=removed>5 Myths That Prevent Job Seekers From Overcoming Failure</h4><p xss=removed>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Cras suscipit, quam vitae adipiscing faucibus, risus nibh laoreet odio, a porttitor metus eros ut enim. Morbi augue velit, tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada. Ut lacus sapien, placerat a ornare nec, elementum sit amet felis. Maecenas pretium lorem hendrerit eros sagittis fermentum.</p><h4 xss=removed>5 Myths That Prevent Job Seekers From Overcoming Failure</h4><p xss=removed>Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus. Sed consequat justo non mauris pretium at tempor justo sodales. Quisque tincidunt laoreet malesuada. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae ante enim. Fusce sed elit est. Suspendisse sit amet mauris in quam pretium faucibus et aliquam odio.</p>', '2019-04-19 12:48:17', 1, 0, '2020-04-19 07:18:17'),
+(13, 'post13', 'Deloo', 'Dello Hello', 'AKIASZ001', 'Add a content here', '2020-06-22 21:11:19', 1, 0, '2020-06-22 15:41:19'),
+(14, 'post14', 'Gmana Swami', 'aghdfsd swami', 'AKIASZ001', 'AAdd a content here', '2020-06-22 21:11:53', 1, 0, '2020-06-22 15:41:53'),
+(15, 'post15', 'Chana Swami', 'ChaNA Swami', 'AKIASZ001', 'Chana Swami', '2020-06-22 21:12:32', 1, 0, '2020-06-22 15:42:32'),
+(16, 'post16', 'tapa gya', 'CORONA VIRUS', 'AKIASZ001', 'Covid-19&nbsp; Update', '2020-06-22 21:14:32', 1, 0, '2020-06-22 15:44:32'),
+(17, 'post17', 'New Article', '', 'AKIASZ001', 'Amman Jnmam gya', '2020-06-22 21:15:08', 1, 0, '2020-06-22 15:45:08'),
+(18, 'post18', 'New Featured Article', 'Featurd Article', 'AKIASZ001', 'Add New Articles', '2020-06-22 21:23:23', 1, 0, '2020-06-22 15:53:23'),
+(19, 'post19', 'Second Article', 'fgdgdg', 'AKIASZ001', 'Add a content here', '2020-06-22 21:25:15', 1, 0, '2020-06-22 15:55:15'),
+(20, 'post20', 'Hello Kalka', 'Jinda Ho', 'AKIASZ001', 'Hello World Kalka', '2020-06-22 21:32:14', 1, 0, '2020-06-22 16:02:14'),
+(21, 'post21', 'New Trading Post', 'Hello Teading Video', 'AKIASZ001', 'Add a content here', '2020-06-22 21:33:01', 1, 0, '2020-06-22 16:03:01');
 
 -- --------------------------------------------------------
 
@@ -117,7 +136,8 @@ INSERT INTO `article` (`id`, `postid`, `title`, `slug`, `created_by`, `content`,
 -- Stand-in structure for view `article_view`
 -- (See below for the actual view)
 --
-CREATE TABLE `article_view` (
+DROP VIEW IF EXISTS `article_view`;
+CREATE TABLE IF NOT EXISTS `article_view` (
 `id` int(11)
 ,`postid` char(6)
 ,`title` text
@@ -140,12 +160,14 @@ CREATE TABLE `article_view` (
 -- Table structure for table `category`
 --
 
-CREATE TABLE `category` (
-  `id` int(5) NOT NULL,
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `parent` varchar(11) DEFAULT NULL,
-  `icon` varchar(225) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `icon` varchar(225) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
@@ -166,11 +188,13 @@ INSERT INTO `category` (`id`, `name`, `parent`, `icon`) VALUES
 -- Table structure for table `cities`
 --
 
-CREATE TABLE `cities` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cities`;
+CREATE TABLE IF NOT EXISTS `cities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
-  `state_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `state_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5742 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cities`
@@ -5927,33 +5951,40 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 -- Table structure for table `course`
 --
 
-CREATE TABLE `course` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE IF NOT EXISTS `course` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` char(9) NOT NULL,
   `name` varchar(64) CHARACTER SET utf8 NOT NULL,
-  `slug` text CHARACTER SET utf8 DEFAULT NULL,
+  `slug` text CHARACTER SET utf8,
   `review` decimal(5,2) NOT NULL,
   `review_counter` int(11) NOT NULL,
-  `is_publish` tinyint(1) NOT NULL DEFAULT 0,
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `plan_description` text NOT NULL,
+  `docid` varchar(64) NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
-  `course_type` enum('beginner','entermidate','expert') NOT NULL DEFAULT 'beginner',
+  `course_type` varchar(32) DEFAULT 'beginner',
   `created_by` varchar(9) DEFAULT NULL,
   `created` datetime NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `course_id` (`course_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`id`, `course_id`, `name`, `slug`, `review`, `review_counter`, `is_publish`, `description`, `course_type`, `created_by`, `created`, `last_update`, `deleted`) VALUES
-(22, 'kalka22', 'MPSI', 'SUB INSPECTOR', '0.00', 0, 1, 'SCORE 90 PERCENT IN MPSI EXAM', 'beginner', 'AKIASZ001', '2020-05-04 23:24:19', '2020-05-04 17:24:19', 0),
-(23, 'kalka23', 'CTET', 'CTET EXAM', '0.00', 0, 1, 'CTET SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:35:03', '2020-05-04 17:35:03', 0),
-(24, 'kalka24', 'UPSC IAS', 'UPSC EXAM', '0.00', 0, 1, 'UPSC IAS / IPS SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:44:39', '2020-05-04 17:44:39', 0),
-(25, 'kalka25', 'NEET', 'NEET SPECIAL', '0.00', 0, 1, 'HOW TO SCORE 600 PLUS IN NEET?', 'beginner', 'AKIASZ001', '2020-05-04 23:49:14', '2020-05-04 17:49:14', 0),
-(26, 'kalka26', 'उत्तर प्रदेश लेखपाल भर्ती ', 'UP लेखपाल भर्ती ', '0.00', 0, 1, 'उत्तर प्रदेश लेखपाल भर्ती ', 'beginner', 'AKIASZ001', '2020-05-04 23:57:10', '2020-05-04 17:57:10', 0),
-(27, 'kalka27', 'MPPSC', 'MPPSC SPECIAL', '0.00', 0, 1, 'CRACK MPPSC IN FIRST ATTEMPT', 'beginner', 'AKIASZ001', '2020-05-05 00:09:33', '2020-05-04 18:09:33', 0);
+INSERT INTO `course` (`id`, `course_id`, `name`, `slug`, `review`, `review_counter`, `is_publish`, `plan_description`, `docid`, `description`, `course_type`, `created_by`, `created`, `last_update`, `deleted`) VALUES
+(22, 'kalka22', 'MPSI', 'SUB INSPECTOR', '0.00', 0, 1, '', '', 'SCORE 90 PERCENT IN MPSI EXAM', 'beginner', 'AKIASZ001', '2020-05-04 23:24:19', '2020-05-04 17:24:19', 0),
+(23, 'kalka23', 'CTET', 'CTET EXAM', '0.00', 0, 1, '', '', 'CTET SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:35:03', '2020-05-04 17:35:03', 0),
+(24, 'kalka24', 'UPSC IAS', 'UPSC EXAM', '0.00', 0, 1, '', '', 'UPSC IAS / IPS SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:44:39', '2020-05-04 17:44:39', 0),
+(25, 'kalka25', 'NEET', 'NEET SPECIAL', '0.00', 0, 1, '', '', 'HOW TO SCORE 600 PLUS IN NEET?', 'beginner', 'AKIASZ001', '2020-05-04 23:49:14', '2020-05-04 17:49:14', 0),
+(27, 'kalka27', 'MPPSC', 'MPPSC SPECIAL', '0.00', 0, 1, '', '', 'CRACK MPPSC IN FIRST ATTEMPT', 'entermidate', 'AKIASZ001', '2020-05-05 00:09:33', '2020-05-04 18:09:33', 0),
+(28, 'kalka28', 'VERG-3', '', '0.00', 0, 1, '', '', 'VALIDITY TILL SEP-19. ', 'beginner', 'AKIASZ001', '2020-06-16 23:51:05', '2020-06-16 17:51:05', 0),
+(29, 'kalka29', 'LADY SUPERVISOR', '', '0.00', 0, 1, '', '', 'LADY SUPERVISOR SPECIAL BATCH', 'beginner', 'AKIASZ001', '2020-06-18 00:57:23', '2020-06-17 18:57:23', 0),
+(30, 'kalka30', 'HSSC', 'HSSC', '0.00', 0, 1, 'Nam liber tempor cum soluta nobis eleifend option congue imperdiet doming id quod mazim placerat facer possim assum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\nLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.', 'doc5ef821a090cdc', '<p class=\"lead\" style=\"margin-bottom: 0.104167in; font-size: 1.25rem; color: rgb(41, 48, 59); font-family: gotham-rounded, &quot;helvetica neue&quot;, helvetica; background-color: rgb(237, 239, 240);\">Nam liber tempor cum soluta nobis eleifend option congue imperdiet doming id quod mazim placerat facer possim assum.</p><p style=\"margin-bottom: 0.104167in; color: rgb(41, 48, 59); font-family: gotham-rounded, &quot;helvetica neue&quot;, helvetica; font-size: 15px; background-color: rgb(237, 239, 240);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p style=\"margin-bottom: 0px; color: rgb(41, 48, 59); font-family: gotham-rounded, &quot;helvetica neue&quot;, helvetica; font-size: 15px; background-color: rgb(237, 239, 240);\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>', 'beginner', 'AKIASZ001', '2020-07-12 18:11:01', '2020-07-12 12:11:01', 0);
 
 -- --------------------------------------------------------
 
@@ -5961,12 +5992,14 @@ INSERT INTO `course` (`id`, `course_id`, `name`, `slug`, `review`, `review_count
 -- Table structure for table `course_meta`
 --
 
-CREATE TABLE `course_meta` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `course_meta`;
+CREATE TABLE IF NOT EXISTS `course_meta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` char(9) NOT NULL,
   `subid` varchar(32) NOT NULL,
-  `serial` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `serial` int(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `course_meta`
@@ -5979,9 +6012,18 @@ INSERT INTO `course_meta` (`id`, `course_id`, `subid`, `serial`) VALUES
 (31, 'kalka19', 'sub16', 3),
 (32, 'kalka19', '6', 4),
 (34, 'kalka21', 'sub2', 0),
-(36, 'kalka22', '1', 0),
-(43, 'kalka27', 'sub24', 0),
-(44, 'kalka27', 'test1', 1);
+(39, 'kalka28', 'sub20', 0),
+(40, 'kalka28', 'sub26', 1),
+(41, 'kalka27', 'sub24', 0),
+(42, 'kalka27', '1', 1),
+(43, 'kalka27', 'test1', 2),
+(44, 'kalka27', 'sub23', 3),
+(46, 'kalka22', '1', 0),
+(47, 'kalka22', 'sub2', 1),
+(48, 'kalka22', 'sub24', 2),
+(49, 'kalka22', 'sub21', 3),
+(52, 'kalka30', '1', 0),
+(53, 'kalka30', 'sub21', 1);
 
 -- --------------------------------------------------------
 
@@ -5989,12 +6031,15 @@ INSERT INTO `course_meta` (`id`, `course_id`, `subid`, `serial`) VALUES
 -- Table structure for table `docfile`
 --
 
-CREATE TABLE `docfile` (
+DROP TABLE IF EXISTS `docfile`;
+CREATE TABLE IF NOT EXISTS `docfile` (
   `docid` char(32) NOT NULL,
   `nodeid` char(32) NOT NULL,
   `root` varchar(32) NOT NULL,
   `type` enum('free','paid') DEFAULT NULL,
-  `download` tinyint(1) NOT NULL
+  `download` tinyint(1) NOT NULL,
+  PRIMARY KEY (`docid`),
+  KEY `nodeid` (`nodeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -6006,7 +6051,8 @@ INSERT INTO `docfile` (`docid`, `nodeid`, `root`, `type`, `download`) VALUES
 ('DOC5eeb5fdc9e82b', 'lect49', '', 'paid', 0),
 ('doc5eeb614b9c362', '66', 'lect50', 'paid', 0),
 ('doc5eeb6db2ebb59', '65', 'lect50', 'paid', 0),
-('doc5eeb6fa018b20', '66', 'lect49', 'paid', 0);
+('doc5eeb6fa018b20', '66', 'lect49', 'paid', 0),
+('doc5ef821a090cdc', '5', 'lect51', 'paid', 0);
 
 -- --------------------------------------------------------
 
@@ -6014,23 +6060,27 @@ INSERT INTO `docfile` (`docid`, `nodeid`, `root`, `type`, `download`) VALUES
 -- Table structure for table `gallery`
 --
 
-CREATE TABLE `gallery` (
-  `id` int(11) NOT NULL,
-  `name` text DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
+DROP TABLE IF EXISTS `gallery`;
+CREATE TABLE IF NOT EXISTS `gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `filetype` varchar(32) DEFAULT NULL,
-  `details` text DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  `created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `details` text,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`(3072))
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gallery`
 --
 
 INSERT INTO `gallery` (`id`, `name`, `status`, `filetype`, `details`, `deleted`, `created`) VALUES
-(65, 'erppdf3', 1, 'pdf', '{\"dirname\":\"uploads\\/document\",\"basename\":\"erppdf3.pdf\",\"extension\":\"pdf\",\"filename\":\"erppdf3\",\"status\":1,\"last_modified\":\"June 18 2020 14:04:53.\",\"size\":25939}', 0, '2020-06-18 17:34:53'),
-(66, 'shree', 1, 'pdf', '{\"dirname\":\"uploads\\/document\",\"basename\":\"shree.pdf\",\"extension\":\"pdf\",\"filename\":\"shree\",\"status\":1,\"last_modified\":\"June 18 2020 14:04:53.\",\"size\":25477}', 0, '2020-06-18 17:34:53');
+(2, '8VRIhOQ-steve-jobs-wallpaper1_medium-1920x1080', 1, 'jpg', '{\"dirname\":\"uploads\\/images\\/medium\",\"basename\":\"8VRIhOQ-steve-jobs-wallpaper1_medium-1920x1080.jpg\",\"extension\":\"jpg\",\"filename\":\"8VRIhOQ-steve-jobs-wallpaper1_medium-1920x1080\",\"status\":1,\"last_modified\":\"June 22 2020 15:04:57.\",\"size\":124351,\"dime\":{\"0\":1920,\"1\":1080,\"2\":2,\"3\":\"width=\\\"1920\\\" height=\\\"1080\\\"\",\"bits\":8,\"channels\":3,\"mime\":\"image\\/jpeg\"}}', 0, '2020-06-22 18:34:58'),
+(3, 'diwali-in-varanasi_medium-640x350', 1, 'jpg', '{\"dirname\":\"uploads\\/images\\/medium\",\"basename\":\"diwali-in-varanasi_medium-640x350.jpg\",\"extension\":\"jpg\",\"filename\":\"diwali-in-varanasi_medium-640x350\",\"status\":1,\"last_modified\":\"June 22 2020 15:04:57.\",\"size\":322021,\"dime\":{\"0\":640,\"1\":350,\"2\":2,\"3\":\"width=\\\"640\\\" height=\\\"350\\\"\",\"bits\":8,\"channels\":3,\"mime\":\"image\\/jpeg\"}}', 0, '2020-06-22 18:34:58'),
+(5, 'erppdf4', 1, 'pdf', '{\"dirname\":\"uploads\\/document\",\"basename\":\"erppdf4.pdf\",\"extension\":\"pdf\",\"filename\":\"erppdf4\",\"status\":1,\"last_modified\":\"June 28 2020 06:50:19.\",\"size\":25939}', 0, '2020-06-28 10:20:19');
 
 -- --------------------------------------------------------
 
@@ -6038,12 +6088,16 @@ INSERT INTO `gallery` (`id`, `name`, `status`, `filetype`, `details`, `deleted`,
 -- Table structure for table `indexing`
 --
 
-CREATE TABLE `indexing` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `indexing`;
+CREATE TABLE IF NOT EXISTS `indexing` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `root` varchar(32) NOT NULL,
   `port` varchar(6) NOT NULL,
-  `type` enum('tag','category') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `type` enum('tag','category') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `port` (`port`)
+) ENGINE=InnoDB AUTO_INCREMENT=392 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `indexing`
@@ -6126,9 +6180,61 @@ INSERT INTO `indexing` (`id`, `root`, `port`, `type`) VALUES
 (318, 'sub32', '18', 'category'),
 (319, 'sub32', '2', 'tag'),
 (320, 'sub32', '18', 'category'),
-(323, 'kalka22', '5', 'tag'),
-(324, 'kalka22', '17', 'category'),
-(325, 'kalka22', '18', 'category');
+(323, 'kalka28', '18', 'category'),
+(324, 'kalka28', '20', 'category'),
+(325, 'lect38', '18', 'category'),
+(326, 'lect47', '18', 'category'),
+(327, 'lect47', '18', 'category'),
+(328, 'lect47', '18', 'category'),
+(329, 'lect37', '18', 'category'),
+(330, 'sub32', '2', 'tag'),
+(331, 'sub32', '18', 'category'),
+(332, 'sub32', '2', 'tag'),
+(333, 'sub32', '18', 'category'),
+(334, 'lect46', '18', 'category'),
+(335, 'lect36', '18', 'category'),
+(336, 'post13', '6', 'tag'),
+(337, 'post13', '17', 'category'),
+(338, 'post13', '18', 'category'),
+(339, 'post14', '5', 'tag'),
+(340, 'post14', '20', 'category'),
+(341, 'post15', '6', 'tag'),
+(342, 'post15', '22', 'category'),
+(343, 'post16', '6', 'tag'),
+(344, 'post16', '18', 'category'),
+(350, 'post17', '6', 'tag'),
+(351, 'post17', '20', 'category'),
+(352, 'post18', '5', 'tag'),
+(353, 'post18', '17', 'category'),
+(354, 'post18', '18', 'category'),
+(355, 'post19', '6', 'tag'),
+(356, 'post19', '17', 'category'),
+(357, 'post19', '18', 'category'),
+(358, 'post20', '5', 'tag'),
+(359, 'post20', '17', 'category'),
+(360, 'post20', '18', 'category'),
+(370, 'lect47', '18', 'category'),
+(371, 'lect47', '18', 'category'),
+(372, 'lect47', '18', 'category'),
+(373, 'lect47', '18', 'category'),
+(374, 'lect47', '18', 'category'),
+(375, 'lect47', '7', 'tag'),
+(376, 'lect47', '18', 'category'),
+(377, 'lect47', '7', 'tag'),
+(378, 'lect47', '18', 'category'),
+(379, 'lect47', '7', 'tag'),
+(380, 'lect47', '18', 'category'),
+(381, 'lect47', '7', 'tag'),
+(382, 'lect47', '18', 'category'),
+(383, 'lect47', '7', 'tag'),
+(384, 'lect47', '18', 'category'),
+(385, 'lect47', '7', 'tag'),
+(386, 'lect47', '18', 'category'),
+(387, 'post21', '6', 'tag'),
+(388, 'post21', '17', 'category'),
+(389, 'post21', '18', 'category'),
+(390, 'kalka30', '7', 'tag'),
+(391, 'kalka30', '19', 'category');
 
 -- --------------------------------------------------------
 
@@ -6136,15 +6242,17 @@ INSERT INTO `indexing` (`id`, `root`, `port`, `type`) VALUES
 -- Table structure for table `keys`
 --
 
-CREATE TABLE `keys` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `keys`;
+CREATE TABLE IF NOT EXISTS `keys` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(40) NOT NULL,
   `level` int(2) NOT NULL,
-  `ignore_limits` tinyint(1) NOT NULL DEFAULT 0,
-  `is_private_key` tinyint(1) NOT NULL DEFAULT 0,
-  `ip_addresses` text DEFAULT NULL,
-  `date_created` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
+  `is_private_key` tinyint(1) NOT NULL DEFAULT '0',
+  `ip_addresses` text,
+  `date_created` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `keys`
@@ -6159,19 +6267,22 @@ INSERT INTO `keys` (`id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip
 -- Table structure for table `lesson`
 --
 
-CREATE TABLE `lesson` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `lesson`;
+CREATE TABLE IF NOT EXISTS `lesson` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` char(9) CHARACTER SET latin1 NOT NULL,
   `name` text NOT NULL,
-  `slug` text DEFAULT NULL,
-  `url` text CHARACTER SET utf8mb4 DEFAULT NULL,
-  `is_publish` tinyint(1) NOT NULL DEFAULT 0,
-  `lesson_type` enum('video','pdf') NOT NULL DEFAULT 'video',
-  `description` text DEFAULT NULL,
+  `slug` text,
+  `url` text CHARACTER SET utf8mb4,
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `lesson_type` enum('video','pdf') DEFAULT 'video',
+  `description` text,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT current_timestamp(),
-  `deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `lesson_id` (`lesson_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `lesson`
@@ -6180,9 +6291,9 @@ CREATE TABLE `lesson` (
 INSERT INTO `lesson` (`id`, `lesson_id`, `name`, `slug`, `url`, `is_publish`, `lesson_type`, `description`, `created_at`, `updated_at`, `deleted`) VALUES
 (30, 'lect30', 'लाभ और हानि शार्ट ट्रिक ( 5 मिनिट में )', 'Today\'s challenges', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/PU5ElUazL_o\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 1, 'video', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">Today\'s challenges\" need \"Today\'s solutions\". The way this applies to real-word, it equally applies to programming world. To create solutions that meet today\'s expectations, one needs to use a modern language like C# and technology like .NET. learning C#.</span>', '2020-04-30 17:22:05', '2020-04-30 16:52:05', 0),
 (31, 'lect31', 'Geography', 'Geography', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ikin7LmzPnw\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 1, 'video', 'Add a Description here', '2020-05-03 05:04:33', '2020-05-03 05:34:33', 0),
-(33, 'sub32', 'CIVIL SERVICES EXAMINATION', 'TARGET 2020-2021', 'https://www.youtube.com/watch?v=bDgr5bJRqFc&t=97s', 1, 'video', '1 YR STRATEGY', '2020-05-04 16:10:59', '2020-05-04 16:40:59', 0),
+(33, 'sub32', 'HOW TO JOIN KALKA IAS ZONE ?', 'TARGET 2020-2021', 'https://www.youtube.com/watch?v=bDgr5bJRqFc&t=97s', 1, 'video', 'HOW TO JOIN KALKA IAS ZONE ?', '2020-05-04 16:10:59', '2020-05-04 16:40:59', 0),
 (34, 'lect34', 'NEET1', '', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/1nastZ3NdLg\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 1, 'video', 'NEET1', '2020-05-04 16:25:08', '2020-05-04 16:55:08', 0),
-(36, 'lect36', 'CTET ', 'CTET SPECIAL', '', 1, 'video', 'HOW TO CRACK CTET ?', '2020-05-04 22:44:30', '2020-05-04 23:14:30', 0),
+(36, 'lect36', 'ENGLISH SPEAKING COURSE', 'FLUENT IN ENGLISH', '', 1, 'video', 'ENGLISH VOCAB.', '2020-05-04 22:44:30', '2020-05-04 23:14:30', 0),
 (37, 'lect37', 'MPSI', 'SUB INSPECTOR', '', 1, 'video', 'SCORE 90 PERCENT IN FIRST ATTEMPT', '2020-05-04 22:49:48', '2020-05-04 23:19:48', 0),
 (38, 'lect38', 'NEET', 'CRASH COURSE NEET', '', 1, 'video', 'HOW TO SCORE 600 PLUS IN NEET ?', '2020-05-04 22:52:05', '2020-05-04 23:22:05', 0),
 (39, 'sub39', 'UPSC IAS', 'CIVIL SERVICE EXAM', '', 0, 'video', 'UPSC IAS/ IPS SPECIAL CLASS', '2020-05-04 23:05:46', '2020-05-04 23:35:46', 0),
@@ -6192,11 +6303,34 @@ INSERT INTO `lesson` (`id`, `lesson_id`, `name`, `slug`, `url`, `is_publish`, `l
 (43, 'lect43', 'DIVERSITY IN LIVING WORLD', 'NEET CLASS 1', '', 1, 'video', '<span style=\"background-color: rgb(255, 0, 0);\">DIVERSITY IN LIVING WORLD-NEET CLASS 1</span>', '2020-05-04 23:53:47', '2020-05-05 00:23:47', 0),
 (44, 'lect44', 'ग्राम विकास', 'RURAL DEVELOPMENT', '', 1, 'video', 'ग्राम विकास&nbsp;की पूरी जानकारी&nbsp;&nbsp;', '2020-05-05 00:03:27', '2020-05-05 00:33:27', 0),
 (45, 'lect45', 'INTRODUCTION OF INDIAN GEOGRAPHY ', 'INDIAN GEOGRAPHY', '', 1, 'video', 'MAKE BRIEF NOTES OF INDIAN GEOGRAPHY', '2020-05-05 00:11:35', '2020-05-05 00:41:35', 0),
-(46, 'lect46', 'PERFECT 1 YEAR STRATEGY OF UPSC IAS EXAM', 'UPSC FOUNDATION', '', 1, 'video', 'UPSC IAS/IPS FOUNDATION', '2020-05-05 00:16:07', '2020-05-05 00:46:07', 0),
-(47, 'lect47', 'MPPSC', 'MPPSC DETAIL ', '', 1, 'video', 'MPPSC COMPLETE DETAIL', '2020-05-05 00:19:40', '2020-05-05 00:49:40', 0),
+(46, 'lect46', 'IAS FOUNDATION BATCH', 'UPSC FOUNDATION', '', 1, 'video', 'UPSC IAS/IPS FOUNDATION BATCH', '2020-05-05 00:16:07', '2020-05-05 00:46:07', 0),
+(47, 'lect47', 'MPPSC', 'MPPSC DETAIL ', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/DMRRC0rwO_I\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 1, 'video', 'MPPSC COMPLETE DETAIL', '2020-05-05 00:19:40', '2020-05-05 00:49:40', 0),
 (48, 'lect48', 'Free demo for civil service examination', 'FREE DEMO', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/bDgr5bJRqFc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 1, 'video', '', '2020-05-14 16:58:27', '2020-05-14 17:28:27', 0),
-(49, 'lect49', 'First Pdf', 'Hello Pdf', NULL, 0, 'pdf', 'Add a Description here', '2020-06-18 18:36:44', '2020-06-18 18:06:44', 0),
-(50, 'lect50', 'Second PDF', 'Pdf Lesson', NULL, 1, 'pdf', 'Add a Description here', '2020-06-18 18:42:51', '2020-06-18 18:12:51', 0);
+(49, 'lect49', 'BIOLOGY FOR ALL MEDICAL STUDENTS, PRE MEDICAL TEST', 'SPECIAL BIOLOGY CLASS', NULL, 1, 'video', 'BIOLOGY FOR ALL MEDICAL STUDENTS, PRE MEDICAL TEST', '2020-06-18 02:51:13', '2020-06-18 03:21:13', 0),
+(50, 'lect50', 'BIOLOGY FOR ALL MEDICAL STUDENTS, PRE MEDICAL TEST', '', NULL, 1, 'video', 'Add a Description here', '2020-06-18 02:54:41', '2020-06-18 03:24:41', 0),
+(51, 'lect51', 'New Pdf Lesson', 'Get Select Your PDF lesson', NULL, 1, 'pdf', 'Add a Description here', '2020-06-21 14:31:37', '2020-06-21 15:01:37', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `levels`
+--
+
+DROP TABLE IF EXISTS `levels`;
+CREATE TABLE IF NOT EXISTS `levels` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `levels`
+--
+
+INSERT INTO `levels` (`id`, `name`) VALUES
+(1, 'Beginner'),
+(2, 'Entermidate'),
+(3, 'Expert');
 
 -- --------------------------------------------------------
 
@@ -6204,12 +6338,15 @@ INSERT INTO `lesson` (`id`, `lesson_id`, `name`, `slug`, `url`, `is_publish`, `l
 -- Table structure for table `library`
 --
 
-CREATE TABLE `library` (
+DROP TABLE IF EXISTS `library`;
+CREATE TABLE IF NOT EXISTS `library` (
   `libid` char(32) NOT NULL,
   `user_id` char(32) NOT NULL,
   `resources` char(32) NOT NULL,
   `resourcestype` enum('course','video','test','doc') NOT NULL,
-  `validity` datetime NOT NULL
+  `validity` datetime NOT NULL,
+  PRIMARY KEY (`libid`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6218,12 +6355,15 @@ CREATE TABLE `library` (
 -- Table structure for table `log`
 --
 
-CREATE TABLE `log` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE IF NOT EXISTS `log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` char(32) NOT NULL,
   `ip` varchar(24) NOT NULL,
-  `lastlog` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `lastlog` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `log`
@@ -6300,8 +6440,9 @@ INSERT INTO `log` (`id`, `user_id`, `ip`, `lastlog`) VALUES
 -- Table structure for table `logme`
 --
 
-CREATE TABLE `logme` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `logme`;
+CREATE TABLE IF NOT EXISTS `logme` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `logid` char(9) NOT NULL,
   `phone` varchar(10) DEFAULT NULL,
   `email` varchar(32) DEFAULT NULL,
@@ -6309,11 +6450,13 @@ CREATE TABLE `logme` (
   `language` enum('english','hindi') DEFAULT NULL,
   `role` char(5) NOT NULL,
   `status` enum('active','deactive') NOT NULL,
-  `joindate` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `joindate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL,
-  `deleted` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `deleted` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `role` (`role`)
+) ENGINE=InnoDB AUTO_INCREMENT=100168 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `logme`
@@ -6324,9 +6467,9 @@ INSERT INTO `logme` (`id`, `logid`, `phone`, `email`, `password`, `language`, `r
 (100132, 'EDO100102', '676787980', 'shera@gmail.com', '$2y$10$29mO1RFUPax4cgCXSGEfQebnp7j3EoA/Xugu/N/OYodc.FjkUnnWa', NULL, 's', 'active', '2020-04-29 13:03:39', '2020-04-29 12:33:39', NULL, 1),
 (100133, 'EDO100133', NULL, 'uttem@gmail.com', '$2y$10$Jggmu9s9XzFCzKy7c0yYjORhIEvd/Ak8SJycx26Hr2ZXgYFW1Crji', NULL, 's', 'active', '2020-04-29 13:11:34', '2020-04-29 12:41:34', NULL, 1),
 (100134, 'EDO100134', '1234567890', NULL, '$2y$10$dT2lvB/CFGAg.XWqGEMj4ucoitTQAQvs0gwSjqOfz/5bITshPptVm', NULL, 's', 'active', '2020-05-01 01:31:10', '2020-05-01 02:01:10', NULL, 1),
-(100135, 'EDO100135', '6269201201', NULL, '$2y$10$cC/6bw6nJACxp9jt4DZCPea2FNVEUR/88z4pu1M3FQFlRHaXn.I0.', NULL, 's', 'active', '2020-05-01 17:21:16', '2020-05-01 17:51:16', NULL, 0),
-(100136, 'EDO100136', '8982789789', NULL, '$2y$10$Y/lQHk3q7plle/319d6zWOQwT1zpG98WxziVF.ahnWp6P28UuR.4W', NULL, 's', 'active', '2020-05-01 18:14:39', '2020-05-01 18:44:39', NULL, 0),
-(100137, 'EDO100137', NULL, 'roopalshukla@yahoo.com', '$2y$10$D2zXCM3YmoONE7qp12N4tOXxYq9a4tMam5cSD/A3ASB8Tlxe4/oEO', NULL, 's', 'active', '2020-05-03 00:08:38', '2020-05-03 00:38:38', NULL, 0),
+(100135, 'EDO100135', '6269201201', NULL, '$2y$10$cC/6bw6nJACxp9jt4DZCPea2FNVEUR/88z4pu1M3FQFlRHaXn.I0.', NULL, 's', 'active', '2020-05-01 17:21:16', '2020-05-01 17:51:16', NULL, 1),
+(100136, 'EDO100136', '8982789789', NULL, '$2y$10$Y/lQHk3q7plle/319d6zWOQwT1zpG98WxziVF.ahnWp6P28UuR.4W', NULL, 's', 'active', '2020-05-01 18:14:39', '2020-05-01 18:44:39', NULL, 1),
+(100137, 'EDO100137', NULL, 'roopalshukla@yahoo.com', '$2y$10$D2zXCM3YmoONE7qp12N4tOXxYq9a4tMam5cSD/A3ASB8Tlxe4/oEO', NULL, 's', 'active', '2020-05-03 00:08:38', '2020-05-03 00:38:38', NULL, 1),
 (100138, 'EDO100138', 'e4645657', 'eric@tsitor.com', '$2y$10$0UNh6Kz7h8JVOOg5R/533Oh/kH4bVzDKxGzs6iiTtUQAenqMZHSAy', NULL, 's', 'active', '2020-05-04 02:12:26', '2020-05-04 02:42:26', NULL, 0),
 (100139, 'EDO100139', '4391054920', NULL, '$2y$10$FkFzeyoqwH2gIwZezxnfaeCZWG7sFQ0DSP1boVvkhRgg6eLBOO1Ma', NULL, 's', 'active', '2020-05-05 14:14:47', '2020-05-05 14:44:47', NULL, 1),
 (100140, 'EDO100140', NULL, 'test@gmail.com', '$2y$10$niunkC5NYJpskbjat.2tzuN8YXF/DyYBXWqx6l87mvnbtlhVmyveS', NULL, 's', 'active', '2020-05-07 16:23:48', '2020-05-07 16:53:48', NULL, 1),
@@ -6353,7 +6496,10 @@ INSERT INTO `logme` (`id`, `logid`, `phone`, `email`, `password`, `language`, `r
 (100161, 'EDO100161', '7890541290', 'sonu@gmail.com', '$2y$10$Gz/7Llz.HA2X9Lzmjcwe2eBb9uFZJzPCRaFjpWOtGil0rYZx.1jZ.', NULL, '', 'active', '2020-05-31 18:48:47', '2020-05-31 19:18:47', NULL, 0),
 (100162, 'EDO100162', NULL, 'rockeyrocket84@gmail.com', '$2y$10$rSRpq0fH.bX0Qt/KefvpyeQkkQc63ZhSefRU.msvmDjqJEv2JxzD.', NULL, 's', 'active', '2020-06-01 19:03:51', '2020-06-01 19:33:51', NULL, 0),
 (100163, 'EDO100163', NULL, 'eric@talkwithwebvisitor.com', '$2y$10$PlbOdGvGRNnqUJN3XcSgoet.VUfHNoOkE5cmEGVKxqMQFZ.qoKUum', NULL, 's', 'active', '2020-06-04 03:27:12', '2020-06-04 03:57:12', NULL, 0),
-(100164, 'EDO100164', '9753716022', NULL, '$2y$10$gsUJ.mmjxTEELcPPsn2Wme0yC8zvzqt7MQd4bgrky/ddeVhoa6Ly.', NULL, 's', 'active', '2020-06-10 19:01:55', '2020-06-10 19:31:55', NULL, 0);
+(100164, 'EDO100164', '9753716022', NULL, '$2y$10$gsUJ.mmjxTEELcPPsn2Wme0yC8zvzqt7MQd4bgrky/ddeVhoa6Ly.', NULL, 's', 'active', '2020-06-10 19:01:55', '2020-06-10 19:31:55', NULL, 0),
+(100165, 'EDO100165', '6269011011', 'kalkaias@gmail.com', '$2y$10$ZVQvFcFjtLdARadV/UJ2HuCWEEGGwAFebyx9ifLupsWXdv6tw91GC', NULL, '', 'active', '2020-06-16 23:58:16', '2020-06-17 00:28:16', NULL, 0),
+(100166, 'EDO100166', NULL, 'meher128@gmail.com', '$2y$10$2F2u/BixdpJDHazNTNug4edD6FiEIyTk2TPKyvFPOzSZ3YTgS9cSS', NULL, 's', 'active', '2020-06-17 14:00:30', '2020-06-17 14:30:30', NULL, 0),
+(100167, 'EDO100167', NULL, '', '$2y$10$pc3/fNQCtT6/pucBShTsfOP.cr8H822mQ5JiXAY2jKYrd5u0RBSQK', NULL, 's', 'active', '2020-06-21 15:04:56', '2020-06-21 15:34:56', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -6361,18 +6507,20 @@ INSERT INTO `logme` (`id`, `logid`, `phone`, `email`, `password`, `language`, `r
 -- Table structure for table `logs`
 --
 
-CREATE TABLE `logs` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE IF NOT EXISTS `logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `uri` varchar(255) NOT NULL,
   `method` varchar(6) NOT NULL,
-  `params` text DEFAULT NULL,
+  `params` text,
   `api_key` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `time` int(11) NOT NULL,
   `rtime` float DEFAULT NULL,
   `authorized` varchar(1) NOT NULL,
-  `response_code` smallint(3) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `response_code` smallint(3) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `logs`
@@ -6468,12 +6616,14 @@ INSERT INTO `logs` (`id`, `uri`, `method`, `params`, `api_key`, `ip_address`, `t
 -- Table structure for table `message`
 --
 
-CREATE TABLE `message` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(64) NOT NULL,
   `code` varchar(6) NOT NULL,
-  `time` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message`
@@ -6493,12 +6643,15 @@ INSERT INTO `message` (`id`, `key`, `code`, `time`) VALUES
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
-  `orderid` int(6) NOT NULL,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `orderid` int(6) NOT NULL AUTO_INCREMENT,
   `userid` char(32) NOT NULL,
   `totalprice` double(5,2) NOT NULL,
   `discount` double(5,2) NOT NULL,
-  `modeid` char(6) NOT NULL
+  `modeid` char(6) NOT NULL,
+  PRIMARY KEY (`orderid`),
+  KEY `userid` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6507,12 +6660,16 @@ CREATE TABLE `orders` (
 -- Table structure for table `order_meta`
 --
 
-CREATE TABLE `order_meta` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `order_meta`;
+CREATE TABLE IF NOT EXISTS `order_meta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` char(6) NOT NULL,
   `order_id` char(32) NOT NULL,
   `price` double(5,2) NOT NULL,
-  `discount_price` double(5,2) NOT NULL
+  `discount_price` double(5,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  KEY `order_id` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6521,13 +6678,17 @@ CREATE TABLE `order_meta` (
 -- Table structure for table `payments`
 --
 
-CREATE TABLE `payments` (
+DROP TABLE IF EXISTS `payments`;
+CREATE TABLE IF NOT EXISTS `payments` (
   `payment` char(32) NOT NULL,
   `transaction` varchar(64) NOT NULL,
   `userid` char(32) NOT NULL,
   `orderid` varchar(32) NOT NULL,
   `created_date` datetime NOT NULL,
-  `status` enum('1','2','3','4') NOT NULL
+  `status` enum('1','2','3','4') NOT NULL,
+  PRIMARY KEY (`payment`),
+  KEY `userid` (`userid`),
+  KEY `orderid` (`orderid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6536,15 +6697,18 @@ CREATE TABLE `payments` (
 -- Table structure for table `permissions`
 --
 
-CREATE TABLE `permissions` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `display_name` varchar(100) DEFAULT NULL,
-  `description` tinytext DEFAULT NULL,
-  `status` tinyint(1) DEFAULT 1,
+  `description` tinytext,
+  `status` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6553,9 +6717,11 @@ CREATE TABLE `permissions` (
 -- Table structure for table `permission_roles`
 --
 
-CREATE TABLE `permission_roles` (
+DROP TABLE IF EXISTS `permission_roles`;
+CREATE TABLE IF NOT EXISTS `permission_roles` (
   `role_id` int(11) NOT NULL,
-  `permission_id` int(11) NOT NULL
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`role_id`,`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6564,18 +6730,22 @@ CREATE TABLE `permission_roles` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` varchar(9) NOT NULL,
   `product` char(32) NOT NULL,
   `price` double(5,2) NOT NULL,
   `discount` double(5,2) NOT NULL,
-  `is_publish` tinyint(1) NOT NULL DEFAULT 0,
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
   `tax_id` varchar(6) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `last_update` timestamp NULL DEFAULT current_timestamp(),
-  `deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `product_id` (`product_id`),
+  KEY `product` (`product`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
@@ -6589,7 +6759,8 @@ INSERT INTO `products` (`id`, `product_id`, `product`, `price`, `discount`, `is_
 (9, 'pro9', 'UPSC IAS', 0.00, 0.00, 1, NULL, '2020-05-04 23:47:35', '2020-05-04 17:47:35', 0),
 (10, 'pro10', 'NEET', 0.00, 0.00, 1, NULL, '2020-05-04 23:54:18', '2020-05-04 17:54:18', 0),
 (11, 'pro11', 'UP LEKPAL BHARTI', 0.00, 0.00, 1, NULL, '2020-05-05 00:04:09', '2020-05-04 18:04:09', 0),
-(12, 'pro12', 'MPPSC', 0.00, 0.00, 1, NULL, '2020-05-05 00:12:06', '2020-05-04 18:12:06', 0);
+(12, 'pro12', 'MPPSC', 0.00, 0.00, 1, NULL, '2020-05-05 00:12:06', '2020-05-04 18:12:06', 0),
+(13, 'pro13', 'HSSC', 500.00, 10.00, 1, NULL, '2020-07-12 18:23:37', '2020-07-12 12:23:37', 0);
 
 -- --------------------------------------------------------
 
@@ -6597,11 +6768,13 @@ INSERT INTO `products` (`id`, `product_id`, `product`, `price`, `discount`, `is_
 -- Table structure for table `product_meta`
 --
 
-CREATE TABLE `product_meta` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `product_meta`;
+CREATE TABLE IF NOT EXISTS `product_meta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` varchar(9) NOT NULL,
-  `source` varchar(9) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `source` varchar(9) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product_meta`
@@ -6615,7 +6788,8 @@ INSERT INTO `product_meta` (`id`, `product_id`, `source`) VALUES
 (27, 'pro9', 'kalka24'),
 (28, 'pro10', 'kalka25'),
 (29, 'pro11', 'kalka26'),
-(30, 'pro12', 'kalka27');
+(30, 'pro12', 'kalka27'),
+(31, 'pro13', 'kalka30');
 
 -- --------------------------------------------------------
 
@@ -6623,17 +6797,20 @@ INSERT INTO `product_meta` (`id`, `product_id`, `source`) VALUES
 -- Table structure for table `questions`
 --
 
-CREATE TABLE `questions` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `questions`;
+CREATE TABLE IF NOT EXISTS `questions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `qusid` varchar(32) NOT NULL,
   `type` varchar(64) DEFAULT NULL,
   `name` varchar(64) DEFAULT NULL,
   `title` text NOT NULL,
   `answer` varchar(2) NOT NULL,
   `values` int(11) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `qusid` (`qusid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `questions`
@@ -6641,7 +6818,8 @@ CREATE TABLE `questions` (
 
 INSERT INTO `questions` (`id`, `qusid`, `type`, `name`, `title`, `answer`, `values`, `created`, `deleted`) VALUES
 (2, 'qus2', 'multiple-choice', 'TEST S#1', 'What is Your Name', '3', 5, '2020-06-19 16:41:50', 0),
-(3, 'qus3', 'multiple-choice', 'IAS Q#1', '<p>Some problems may have more than one correct answer. In such cases, grid only one answer.</p>', '2', 4, '2020-06-20 07:34:43', 0);
+(3, 'qus3', 'multiple-choice', 'IAS Q#1', '<p>Some problems may have more than one correct answer. In such cases, grid only one answer.</p>', '2', 4, '2020-06-20 07:34:43', 0),
+(4, 'qus4', 'multiple-choice', 'Demo Q1', 'What is your name?', '1', 5, '2020-06-21 15:26:08', 0);
 
 -- --------------------------------------------------------
 
@@ -6649,12 +6827,15 @@ INSERT INTO `questions` (`id`, `qusid`, `type`, `name`, `title`, `answer`, `valu
 -- Table structure for table `question_meta`
 --
 
-CREATE TABLE `question_meta` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `question_meta`;
+CREATE TABLE IF NOT EXISTS `question_meta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `qusid` varchar(32) DEFAULT NULL,
   `option` text NOT NULL,
-  `count` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `count` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ques` (`qusid`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `question_meta`
@@ -6668,7 +6849,11 @@ INSERT INTO `question_meta` (`id`, `qusid`, `option`, `count`) VALUES
 (29, 'qus2', 'Ashutosh', '5'),
 (30, 'qus3', 'The number of degrees of arc in a circle is 360.', '1'),
 (31, 'qus3', 'The number of radians of arc in a circle is ', '2'),
-(32, 'qus3', 'The sum of the measures in degrees of the angles of a triangle is 180.', '3');
+(32, 'qus3', 'The sum of the measures in degrees of the angles of a triangle is 180.', '3'),
+(33, 'qus4', 'omie', '1'),
+(34, 'qus4', 'shubham', '2'),
+(35, 'qus4', 'shashvat', '3'),
+(36, 'qus4', 'arvind', '4');
 
 -- --------------------------------------------------------
 
@@ -6676,14 +6861,18 @@ INSERT INTO `question_meta` (`id`, `qusid`, `option`, `count`) VALUES
 -- Table structure for table `results`
 --
 
-CREATE TABLE `results` (
-  `result_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `results`;
+CREATE TABLE IF NOT EXISTS `results` (
+  `result_id` int(11) NOT NULL AUTO_INCREMENT,
   `test_id` char(32) NOT NULL,
   `user_id` char(32) NOT NULL,
   `obtained` int(6) NOT NULL,
   `attemptq` int(6) NOT NULL,
   `correctq` int(6) NOT NULL,
-  `wrongq` int(6) NOT NULL
+  `wrongq` int(6) NOT NULL,
+  PRIMARY KEY (`result_id`),
+  KEY `test_id` (`test_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6692,16 +6881,19 @@ CREATE TABLE `results` (
 -- Table structure for table `roles`
 --
 
-CREATE TABLE `roles` (
-  `id` smallint(5) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `display_name` varchar(30) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT 1,
+  `status` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_user_roles_role_Name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `roles`
@@ -6717,9 +6909,11 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `status`, `cre
 -- Table structure for table `roles_users`
 --
 
-CREATE TABLE `roles_users` (
+DROP TABLE IF EXISTS `roles_users`;
+CREATE TABLE IF NOT EXISTS `roles_users` (
   `user_id` char(9) NOT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -6760,7 +6954,10 @@ INSERT INTO `roles_users` (`user_id`, `role_id`) VALUES
 ('EDO100161', 2),
 ('EDO100162', 2),
 ('EDO100163', 2),
-('EDO100164', 2);
+('EDO100164', 2),
+('EDO100165', 2),
+('EDO100166', 2),
+('EDO100167', 2);
 
 -- --------------------------------------------------------
 
@@ -6768,7 +6965,8 @@ INSERT INTO `roles_users` (`user_id`, `role_id`) VALUES
 -- Stand-in structure for view `searches`
 -- (See below for the actual view)
 --
-CREATE TABLE `searches` (
+DROP VIEW IF EXISTS `searches`;
+CREATE TABLE IF NOT EXISTS `searches` (
 `id` char(32)
 ,`name` mediumtext
 ,`slug` mediumtext
@@ -6783,12 +6981,15 @@ CREATE TABLE `searches` (
 -- Table structure for table `setting`
 --
 
-CREATE TABLE `setting` (
-  `setting_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `setting`;
+CREATE TABLE IF NOT EXISTS `setting` (
+  `setting_id` int(11) NOT NULL AUTO_INCREMENT,
   `setting_name` varchar(128) NOT NULL,
   `setting_value` longtext NOT NULL,
-  `autoload` varchar(8) NOT NULL DEFAULT 'yes'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `autoload` varchar(8) NOT NULL DEFAULT 'yes',
+  PRIMARY KEY (`setting_id`),
+  KEY `setting_name` (`setting_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `setting`
@@ -6797,7 +6998,7 @@ CREATE TABLE `setting` (
 INSERT INTO `setting` (`setting_id`, `setting_name`, `setting_value`, `autoload`) VALUES
 (1, 'application_name', 'Online Education Platform for civil service exam - IAS/IPS, MPPSC, UPPSC, MPSI, UPSI ', 'yes'),
 (2, 'application_title', 'KALKA IAS ZONE', 'yes'),
-(3, 'home_slider', '[{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/Untitled_Design_(3)2.png\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/Untitled_Design_(7).png\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/Untitled_Design_(8).png\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/Untitled_Design_(4)1.png\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/\\/medium\\/38b89ccd9b8c4e7bc186b7eac61b3e33_medium-2732x1536.jpg\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/\\/medium\\/59eb2b66c68babcbe33b84c75411622c_medium-1366x768.png\"}]', 'yes');
+(3, 'home_slider', '[{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/f7ba563b3dfdf120fe81b1d103c1ae3e.png\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/4b977fbacd396f410841eef69899e0e7.png\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/65ec547e0c47bf463e2ec2293c4cd6f7.png\"},{\"heading\":\"\",\"details\":\"\",\"buttonUrl\":\"\",\"source\":\"uploads\\/images\\/ad1739f05343ee653b79468d61989031.png\"}]', 'yes');
 
 -- --------------------------------------------------------
 
@@ -6805,11 +7006,13 @@ INSERT INTO `setting` (`setting_id`, `setting_name`, `setting_value`, `autoload`
 -- Table structure for table `states`
 --
 
-CREATE TABLE `states` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `states`;
+CREATE TABLE IF NOT EXISTS `states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
-  `country_id` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `country_id` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `states`
@@ -6864,16 +7067,19 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 -- Table structure for table `subject`
 --
 
-CREATE TABLE `subject` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE IF NOT EXISTS `subject` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_id` char(9) NOT NULL,
   `name` varchar(225) CHARACTER SET utf8 DEFAULT NULL,
-  `description` text CHARACTER SET utf8 DEFAULT NULL,
-  `is_publish` tinyint(1) NOT NULL DEFAULT 0,
+  `description` text CHARACTER SET utf8,
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
-  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `subject_id` (`subject_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
@@ -6887,7 +7093,9 @@ INSERT INTO `subject` (`id`, `subject_id`, `name`, `description`, `is_publish`, 
 (21, 'sub21', 'HISTORY', 'INDIAN HISTORY&nbsp;', 1, '2020-05-04 23:45:46', '2020-05-04 17:45:46', 0),
 (22, 'sub22', 'BIOLOGY', 'BASIC CONCEPT CLEARANCE', 1, '2020-05-04 23:50:14', '2020-05-04 17:50:14', 0),
 (23, 'sub23', 'ECONOMICS', 'ECONOMICS-ग्राम विकास', 1, '2020-05-05 00:02:24', '2020-05-04 18:02:24', 0),
-(24, 'sub24', 'GEOGRAPHY', '&nbsp;INDIAN GEOGRAPHY', 1, '2020-05-05 00:10:18', '2020-05-04 18:10:18', 0);
+(24, 'sub24', 'GEOGRAPHY', '&nbsp;INDIAN GEOGRAPHY', 1, '2020-05-05 00:10:18', '2020-05-04 18:10:18', 0),
+(25, 'sub25', 'CHILD DEVELOPMENT  ', 'child development', 1, '2020-06-17 00:06:54', '2020-06-16 18:06:54', 0),
+(26, 'sub26', 'hindi pedagogy', 'hindi pedagogy', 0, '2020-06-17 00:09:22', '2020-06-16 18:09:22', 0);
 
 -- --------------------------------------------------------
 
@@ -6895,12 +7103,14 @@ INSERT INTO `subject` (`id`, `subject_id`, `name`, `description`, `is_publish`, 
 -- Table structure for table `subject_meta`
 --
 
-CREATE TABLE `subject_meta` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `subject_meta`;
+CREATE TABLE IF NOT EXISTS `subject_meta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_id` varchar(32) NOT NULL,
   `lesson_id` varchar(32) NOT NULL,
-  `serial` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `serial` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subject_meta`
@@ -6917,13 +7127,33 @@ INSERT INTO `subject_meta` (`id`, `subject_id`, `lesson_id`, `serial`) VALUES
 (10, 'sub17', '3', 0),
 (36, 'sub24', 'lect48', 0),
 (35, 'sub2', 'lect34', 0),
-(38, '1', 'lect31', 1),
-(37, '1', 'lect30', 0),
 (27, '8', 'lect4', 0),
 (28, '8', 'lect5', 1),
 (29, '8', 'lect22', 2),
 (30, '8', 'lect25', 3),
-(39, '1', 'lect49', 2);
+(40, '1', 'lect51', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriber`
+--
+
+DROP TABLE IF EXISTS `subscriber`;
+CREATE TABLE IF NOT EXISTS `subscriber` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(64) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subscriber`
+--
+
+INSERT INTO `subscriber` (`id`, `email`, `created`) VALUES
+(1, 'omie@gmail.com', '2020-06-22 16:34:27'),
+(2, 'omie@gmail.com', '2020-06-22 16:44:58');
 
 -- --------------------------------------------------------
 
@@ -6931,10 +7161,13 @@ INSERT INTO `subject_meta` (`id`, `subject_id`, `lesson_id`, `serial`) VALUES
 -- Table structure for table `tags`
 --
 
-CREATE TABLE `tags` (
-  `id` int(5) NOT NULL,
-  `title` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE IF NOT EXISTS `tags` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tag` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tags`
@@ -6952,28 +7185,33 @@ INSERT INTO `tags` (`id`, `title`) VALUES
 -- Table structure for table `tests`
 --
 
-CREATE TABLE `tests` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tests`;
+CREATE TABLE IF NOT EXISTS `tests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `testid` char(32) NOT NULL,
   `nodeid` char(32) NOT NULL,
   `title` text NOT NULL,
   `slug` varchar(255) DEFAULT NULL,
   `duration` varchar(12) NOT NULL,
+  `level` varchar(32) DEFAULT NULL,
   `nofqus` int(6) NOT NULL,
   `totalno` int(6) NOT NULL,
-  `curriculum` text DEFAULT NULL,
+  `curriculum` text,
   `description` text NOT NULL,
-  `is_publish` tinyint(1) NOT NULL DEFAULT 0,
-  `created` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `testid` (`testid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tests`
 --
 
-INSERT INTO `tests` (`id`, `testid`, `nodeid`, `title`, `slug`, `duration`, `nofqus`, `totalno`, `curriculum`, `description`, `is_publish`, `created`) VALUES
-(1, 'test1', '', 'Test Title', 'new test serise added', '50', 0, 0, '[]', 'Add a Description here', 1, '2020-06-19 10:28:34'),
-(2, 'test2', '', 'Test Serise Created', 'created Test Serise', '80', 2, 9, '[{\"qusid\":\"qus2\",\"name\":\"TEST S#1\",\"title\":\"What is Your Name\",\"values\":\"5\"},{\"qusid\":\"qus3\",\"name\":\"IAS Q#1\",\"title\":\"<p>Some problems may have more than one correct answer. In such cases, grid only one answer.<\\/p>\",\"values\":\"4\"}]', 'Add a Description here', 1, '2020-06-20 07:03:22');
+INSERT INTO `tests` (`id`, `testid`, `nodeid`, `title`, `slug`, `duration`, `level`, `nofqus`, `totalno`, `curriculum`, `description`, `is_publish`, `deleted`, `created`) VALUES
+(3, 'test1', '', 'Demo Test', 'Demo Test on Kalka Ias Zone', '30', 'beginner', 1, 5, '[{\"qusid\":\"qus4\",\"name\":\"Demo Q1\",\"title\":\"What is your name?\",\"values\":\"5\"}]', 'Add a Description here...', 1, 0, '2020-06-21 14:54:18'),
+(4, 'test4', '', 'JSON Test', 'JSON Formatter and JSON Validator help to format and validate your JSON data.', '50', NULL, 0, 0, '[{\"qusid\":\"qus4\",\"name\":\"Demo Q1\",\"title\":\"What is your name?\",\"values\":\"5\"}]', '<p style=\"margin-bottom: 10px; font-size: 20px; color: rgb(255, 255, 255); font-family: &quot;helvetica neue&quot;, Helvetica, Arial, sans-serif; background-color: rgb(52, 152, 219);\">JSON Formatter and JSON Validator help to format and validate your JSON data. It also provides a tree view that helps to navigate your formatted JSON data.</p><p style=\"margin-bottom: 10px; font-size: 20px; color: rgb(255, 255, 255); font-family: &quot;helvetica neue&quot;, Helvetica, Arial, sans-serif; background-color: rgb(52, 152, 219);\">This JSON Online tool is very powerful.</p><ul style=\"margin-bottom: 10px; color: rgb(255, 255, 255); font-family: &quot;helvetica neue&quot;, Helvetica, Arial, sans-serif; background-color: rgb(52, 152, 219);\"><li>It helps to validate JSON online with Error Messages.</li><li>It\'s the only JSON tool that shows the image on hover on Image URL in a tree view.</li><li>It\'s also a JSON Beautifier which supports indentation levels: 2 spaces, 3 spaces, 4 spaces.</li><li>Supports Printing of JSON Data.</li><li>Supports JSON Graph View.</li><li>Stores data locally for the last JSON Formatted in Browser\'s Local Storage.</li><li><p style=\"margin-bottom: 10px; font-size: 20px; color: rgb(255, 255, 255);\">Online JSON Formatter and Online JSON Validator also provides tools to convert&nbsp;<a href=\"https://jsonformatter.org/json-to-xml\" style=\"color: rgb(44, 62, 80); outline: 0px;\">JSON to XML</a>, JSON to CSV,&nbsp;<a href=\"https://jsonformatter.org/json-editor\" style=\"color: rgb(44, 62, 80); outline: 0px;\">JSON Editor</a>, JSONLint , JSON Checker and JSON Cleaner.</p><p style=\"margin-bottom: 10px; font-size: 20px; color: rgb(255, 255, 255);\">JSON Formatter Online and JSON Validator Online work well in Windows, Mac, Linux, Chrome, Firefox, Safari, and Edge and it\'s free.</p><p style=\"margin-bottom: 10px; font-size: 20px; color: rgb(255, 255, 255);\"></p><h4 style=\"font-family: Montserrat, &quot;helvetica neue&quot;, Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); margin-top: 10px; margin-bottom: 10px; font-size: 18px; text-transform: uppercase;\">JSON EXAMPLE:</h4></li></ul>', 1, 0, '2020-06-25 06:54:55');
 
 -- --------------------------------------------------------
 
@@ -6981,12 +7219,15 @@ INSERT INTO `tests` (`id`, `testid`, `nodeid`, `title`, `slug`, `duration`, `nof
 -- Table structure for table `thumbnail`
 --
 
-CREATE TABLE `thumbnail` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `thumbnail`;
+CREATE TABLE IF NOT EXISTS `thumbnail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `root` char(32) NOT NULL,
-  `thumb` text DEFAULT NULL,
-  `image` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `thumb` text,
+  `image` text,
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`)
+) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `thumbnail`
@@ -7027,18 +7268,9 @@ INSERT INTO `thumbnail` (`id`, `root`, `thumb`, `image`) VALUES
 (101, 'kalka21', 'uploads/images/MPPSC12.png', 'uploads/images/MPPSC12.png'),
 (102, 'pro6', 'uploads/images/MPPSC_(2).png', 'uploads/images/MPPSC_(2).png'),
 (103, 'lect35', 'uploads/images//medium/MPPSC (10).png', 'uploads/images//medium/MPPSC (10).png'),
-(104, 'lect36', 'uploads/images//medium/MPPSC (10).png', 'uploads/images//medium/MPPSC (10).png'),
-(106, 'lect37', 'uploads/images/MPPSC11.png', 'uploads/images/MPPSC11.png'),
-(107, 'lect38', 'uploads/images//medium/MPPSC (8).png', 'uploads/images//medium/MPPSC (8).png'),
 (109, 'lect41', 'uploads/images//medium/MPPSC (4).png', 'uploads/images//medium/MPPSC (4).png'),
 (110, 'pro8', 'uploads/images//medium/MPPSC (4).png', 'uploads/images//medium/MPPSC (4).png'),
-(111, 'kalka23', 'uploads/images//medium/MPPSC (4).png', 'uploads/images//medium/MPPSC (4).png'),
-(112, 'kalka24', 'uploads/images/MPPSC.png', 'uploads/images/MPPSC.png'),
-(113, 'kalka25', 'uploads/images/MPPSC_(2).png', 'uploads/images/MPPSC_(2).png'),
 (114, 'kalka26', 'uploads/images//medium/MPPSC (1).png', 'uploads/images//medium/MPPSC (1).png'),
-(115, 'kalka27', 'uploads/images/banner2.jpg', 'uploads/images/banner2.jpg'),
-(116, 'lect46', 'uploads/images/MPPSC_(5)4.png', 'uploads/images/MPPSC_(5)4.png'),
-(117, 'lect47', 'uploads/images/MPPSC_(6).png', 'uploads/images/MPPSC_(6).png'),
 (118, 'EDO100139', NULL, NULL),
 (119, 'EDO100140', NULL, NULL),
 (120, 'EDO100141', NULL, NULL),
@@ -7050,7 +7282,6 @@ INSERT INTO `thumbnail` (`id`, `root`, `thumb`, `image`) VALUES
 (126, 'EDO100147', NULL, NULL),
 (127, 'EDO100148', NULL, NULL),
 (128, 'EDO100149', NULL, NULL),
-(130, 'sub32', 'uploads/images//medium/MPPSC (7).png', 'uploads/images//medium/MPPSC (7).png'),
 (131, 'EDO100150', NULL, NULL),
 (132, 'EDO100151', NULL, NULL),
 (133, 'EDO100152', NULL, NULL),
@@ -7065,9 +7296,36 @@ INSERT INTO `thumbnail` (`id`, `root`, `thumb`, `image`) VALUES
 (142, 'EDO100162', NULL, NULL),
 (143, 'EDO100163', NULL, NULL),
 (144, 'EDO100164', NULL, NULL),
-(148, 'test1', 'uploads/images\\/medium/5366d4429f4c980417f196ec554a980a_medium-776x400.jpg', 'uploads/images\\/medium/5366d4429f4c980417f196ec554a980a_medium-776x400.jpg'),
-(150, 'test2', 'uploads/images\\/medium/70c1ed11d0bd7430dd47407fd52fa66c_medium-2560x1440.jpg', 'uploads/images\\/medium/70c1ed11d0bd7430dd47407fd52fa66c_medium-2560x1440.jpg'),
-(152, 'kalka22', 'uploads/images/MPPSC_12.png', 'uploads/images/MPPSC_12.png');
+(145, 'EDO100165', NULL, NULL),
+(147, 'kalka27', 'uploads/images/70a160e160f84b10a2cb4ec03aeae4e0.png', 'uploads/images/70a160e160f84b10a2cb4ec03aeae4e0.png'),
+(148, 'kalka23', 'uploads/images/35e08ca5e4d9fcc22f338fc051cf065a.png', 'uploads/images/35e08ca5e4d9fcc22f338fc051cf065a.png'),
+(150, 'kalka25', 'uploads/images/633c93cca4e6aa96af0a817586fc9c8c.png', 'uploads/images/633c93cca4e6aa96af0a817586fc9c8c.png'),
+(151, 'kalka22', 'uploads/images/fa25c495674076f372fdda905e7f5220.png', 'uploads/images/fa25c495674076f372fdda905e7f5220.png'),
+(155, 'kalka28', 'uploads/images/7af0a5d7762c5a3aa429bbb8c8b5b853.png', 'uploads/images/7af0a5d7762c5a3aa429bbb8c8b5b853.png'),
+(156, 'EDO100166', NULL, NULL),
+(159, 'kalka24', 'uploads/images/531428e01cb291580b665f86ed153354.png', 'uploads/images/531428e01cb291580b665f86ed153354.png'),
+(160, 'kalka29', 'uploads/images/9e1ae912888f5ecb5a9ecc6169c61bad.png', 'uploads/images/9e1ae912888f5ecb5a9ecc6169c61bad.png'),
+(161, 'lect38', 'uploads/images/347d105ba90cf34b44cefd375ca012a8.png', 'uploads/images/347d105ba90cf34b44cefd375ca012a8.png'),
+(165, 'lect37', 'uploads/images/a344e4821403d45e5868c6015d7c17d5.png', 'uploads/images/a344e4821403d45e5868c6015d7c17d5.png'),
+(167, 'sub32', 'uploads/images/562ab35e8168ee00bc277b861ac6bf55.png', 'uploads/images/562ab35e8168ee00bc277b861ac6bf55.png'),
+(168, 'lect46', 'uploads/images/1cba47f6c19502a0d3527d72382736f0.png', 'uploads/images/1cba47f6c19502a0d3527d72382736f0.png'),
+(169, 'lect36', 'uploads/images/1b2c338440ba367117c52bbdb2cbe5f3.png', 'uploads/images/1b2c338440ba367117c52bbdb2cbe5f3.png'),
+(170, 'lect49', 'uploads/images/e990ffd29983028bcfbbbbd40b51d597.png', 'uploads/images/e990ffd29983028bcfbbbbd40b51d597.png'),
+(171, 'lect50', 'uploads/images/e990ffd29983028bcfbbbbd40b51d597.png', 'uploads/images/e990ffd29983028bcfbbbbd40b51d597.png'),
+(172, 'EDO100167', NULL, NULL),
+(173, 'test1', 'uploads/images/1b2c338440ba367117c52bbdb2cbe5f3.png', 'uploads/images/1b2c338440ba367117c52bbdb2cbe5f3.png'),
+(174, 'post13', 'uploads/images\\/medium/950228789d21430ffc55ce71955228e0_medium-275x183.jpg', 'uploads/images\\/medium/950228789d21430ffc55ce71955228e0_medium-275x183.jpg'),
+(175, 'post14', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg'),
+(176, 'post15', 'uploads/images\\/medium/bb799962824d7f9ea161f4e5ebc2410c_medium-600x316.jpg', 'uploads/images\\/medium/bb799962824d7f9ea161f4e5ebc2410c_medium-600x316.jpg'),
+(177, 'post16', 'uploads/images\\/medium/cca2e63abd42787bbe310af7fc1b8d14_medium-277x182.jpg', 'uploads/images\\/medium/cca2e63abd42787bbe310af7fc1b8d14_medium-277x182.jpg'),
+(180, 'post17', 'uploads/images\\/medium/1e914db15ec94f6a81165c252e7a3844_medium-275x183.jpg', 'uploads/images\\/medium/1e914db15ec94f6a81165c252e7a3844_medium-275x183.jpg'),
+(181, 'post18', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg'),
+(182, 'post19', 'uploads/images\\/thumbnail/fe717a9c081a3ed27fc6bd68fe902298_thumb-200x133.jpg', 'uploads/images\\/thumbnail/fe717a9c081a3ed27fc6bd68fe902298_thumb-200x133.jpg'),
+(183, 'post20', 'uploads/images\\/medium/bb799962824d7f9ea161f4e5ebc2410c_medium-600x316.jpg', 'uploads/images\\/medium/bb799962824d7f9ea161f4e5ebc2410c_medium-600x316.jpg'),
+(186, 'test4', 'uploads/images\\/medium/5366d4429f4c980417f196ec554a980a_medium-776x400.jpg', 'uploads/images\\/medium/5366d4429f4c980417f196ec554a980a_medium-776x400.jpg'),
+(197, 'lect47', 'undefined', 'undefined'),
+(198, 'post21', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg'),
+(199, 'kalka30', 'undefined', 'undefined');
 
 -- --------------------------------------------------------
 
@@ -7075,7 +7333,8 @@ INSERT INTO `thumbnail` (`id`, `root`, `thumb`, `image`) VALUES
 -- Stand-in structure for view `users`
 -- (See below for the actual view)
 --
-CREATE TABLE `users` (
+DROP VIEW IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
 `logid` char(9)
 ,`email` varchar(32)
 ,`phone` varchar(10)
@@ -7086,8 +7345,8 @@ CREATE TABLE `users` (
 ,`details` text
 ,`thumb` text
 ,`image` text
-,`role_id` mediumtext
-,`role_name` mediumtext
+,`role_id` text
+,`role_name` text
 ,`deleted` tinyint(1)
 );
 
@@ -7097,20 +7356,21 @@ CREATE TABLE `users` (
 -- Table structure for table `users_course`
 --
 
-CREATE TABLE `users_course` (
-  `assign_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users_course`;
+CREATE TABLE IF NOT EXISTS `users_course` (
+  `assign_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(32) NOT NULL,
   `course_id` varchar(32) NOT NULL,
-  `assign_date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `assign_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`assign_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users_course`
 --
 
 INSERT INTO `users_course` (`assign_id`, `user_id`, `course_id`, `assign_date`) VALUES
-(1, 'EDO100102', 'kalka26', '2020-06-16 21:23:35'),
-(2, 'EDO100137', 'kalka26', '2020-06-16 23:48:27');
+(3, 'EDO100137', 'kalka27', '2020-06-17 04:22:19');
 
 -- --------------------------------------------------------
 
@@ -7118,11 +7378,13 @@ INSERT INTO `users_course` (`assign_id`, `user_id`, `course_id`, `assign_date`) 
 -- Table structure for table `user_aim`
 --
 
-CREATE TABLE `user_aim` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user_aim`;
+CREATE TABLE IF NOT EXISTS `user_aim` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(10) NOT NULL,
-  `aim_id` int(2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `aim_id` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_aim`
@@ -7138,14 +7400,17 @@ INSERT INTO `user_aim` (`id`, `user_id`, `aim_id`) VALUES
 -- Table structure for table `user_details`
 --
 
-CREATE TABLE `user_details` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user_details`;
+CREATE TABLE IF NOT EXISTS `user_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(10) NOT NULL,
   `name` varchar(32) NOT NULL,
   `mobile` varchar(13) DEFAULT NULL,
-  `details` text DEFAULT NULL,
-  `updated_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `details` text,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_details`
@@ -7185,7 +7450,10 @@ INSERT INTO `user_details` (`id`, `user_id`, `name`, `mobile`, `details`, `updat
 (83, 'EDO100161', 'sonu kumar', NULL, '{\"city\":\"Varanasi\",\"states\":\"Uttar Pradesh\",\"bio\":\"New Student Name Is Sonu\"}', '2020-05-31 19:18:47'),
 (84, 'EDO100162', 'bhanu singh', NULL, '{\"city\":\"uttar pradesh\",\"request_course\":\"SSC\"}', '2020-06-01 19:33:51'),
 (85, 'EDO100163', 'Eric Jones', NULL, '{\"city\":\"New York\",\"request_course\":\"My name\\u2019s Eric and I just came across your website - kalkaiaszone.online - in the search results.\\r\\n\\r\\nHere\\u2019s what that means to me\\u2026\\r\\n\\r\\nYour SEO\\u2019s working.\\r\\n\\r\\nYou\\u2019re getting eyeballs \\u2013 mine at least.\\r\\n\\r\\nYour content\\u2019s pretty good, wouldn\\u2019t change a thing.\\r\\n\\r\\nBUT\\u2026\\r\\n\\r\\nEyeballs don\\u2019t pay the bills.\\r\\n\\r\\nCUSTOMERS do.\\r\\n\\r\\nAnd studies show that 7 out of 10 visitors to a site like kalkaiaszone.online will drop by, take a gander, and then head for the hills without doing anything else.\\r\\n\\r\\nIt\\u2019s like they never were even there.\\r\\n\\r\\nYou can fix this.\\r\\n\\r\\nYou can make it super-simple for them to raise their hand, say, \\u201cokay, let\\u2019s talk\\u201d without requiring them to even pull their cell phone from their pocket\\u2026 thanks to Talk With Web Visitor.\\r\\n\\r\\nTalk With Web Visitor is a software widget that sits on your site, ready and waiting to capture any visitor\\u2019s Name, Email address and Phone Number.  It lets you know immediately \\u2013 so you can talk to that lead immediately\\u2026 without delay\\u2026 BEFORE they head for those hills.\\r\\n  \\r\\nCLICK HERE http:\\/\\/www.talkwithwebvisitor.com to try out a Live Demo with Talk With Web Visitor now to see exactly how it works.\\r\\n\\r\\nNow it\\u2019s also true that when reaching out to hot leads, you MUST act fast \\u2013 the difference between contacting someone within 5 minutes versus 30 minutes later is huge \\u2013 like 100 times better!\\r\\n\\r\\nThat\\u2019s what makes our new SMS Text With Lead feature so powerful\\u2026 you\\u2019ve got their phone number, so now you can start a text message (SMS) conversation with them\\u2026 so even if they don\\u2019t take you up on your offer right away, you continue to text them new offers, new content, and new reasons to do business with you.\\r\\n\\r\\nThis could change everything for you and your business.\\r\\n\\r\\nCLICK HERE http:\\/\\/www.talkwithwebvisitor.com to learn more about everything Talk With Web Visitor can do and start turing eyeballs into money.\\r\\n\\r\\nEric\\r\\nPS: Talk With Web Visitor offers a FREE 14 days trial \\u2013 you could be converting up to 100x more leads immediately!   \\r\\nIt even includes International Long Distance Calling. \\r\\nPaying customers are out there waiting. \\r\\nStarting connecting today by CLICKING HERE http:\\/\\/www.talkwithwebvisitor.com to try Talk With Web Visitor now.\\r\\n\\r\\nIf you\'d like to unsubscribe click here http:\\/\\/talkwithwebvisitor.com\\/unsubscribe.aspx?d=kalkaiaszone.online\\r\\n\"}', '2020-06-04 03:57:12'),
-(86, 'EDO100164', 'Deeksha Tandel', NULL, '{\"city\":\"Bhopal\",\"request_course\":\"Mppsc\"}', '2020-06-10 19:31:55');
+(86, 'EDO100164', 'Deeksha Tandel', NULL, '{\"city\":\"Bhopal\",\"request_course\":\"Mppsc\"}', '2020-06-10 19:31:55'),
+(87, 'EDO100165', 'PINKY', NULL, '{\"city\":\"Bhopal\",\"states\":\"Type States Name ...\",\"bio\":\"mppsc\"}', '2020-06-17 00:28:16'),
+(88, 'EDO100166', 'MEHARA NAND VERMA', NULL, '{\"city\":\"Varanasi\",\"request_course\":\"test\"}', '2020-06-17 14:30:30'),
+(89, 'EDO100167', '', NULL, NULL, '2020-06-21 15:34:56');
 
 -- --------------------------------------------------------
 
@@ -7193,7 +7461,8 @@ INSERT INTO `user_details` (`id`, `user_id`, `name`, `mobile`, `details`, `updat
 -- Table structure for table `videos`
 --
 
-CREATE TABLE `videos` (
+DROP TABLE IF EXISTS `videos`;
+CREATE TABLE IF NOT EXISTS `videos` (
   `videoid` char(32) NOT NULL,
   `nodeid` char(32) NOT NULL,
   `type` enum('free','paid') NOT NULL,
@@ -7201,11 +7470,13 @@ CREATE TABLE `videos` (
   `url` text NOT NULL,
   `size` varchar(32) NOT NULL,
   `videotype` varchar(32) NOT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `rating` int(5) DEFAULT NULL,
   `rate_count` int(11) DEFAULT NULL,
-  `download` tinyint(1) NOT NULL DEFAULT 0,
-  `time` varchar(32) DEFAULT NULL
+  `download` tinyint(1) NOT NULL DEFAULT '0',
+  `time` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`videoid`),
+  KEY `nodeid` (`nodeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -7225,7 +7496,8 @@ INSERT INTO `videos` (`videoid`, `nodeid`, `type`, `name`, `url`, `size`, `video
 ('W5e9e90753de63', 'lect26', 'paid', 'v24.mp4', 'uploads/v24.mp4', '17018265', 'mp4', NULL, NULL, NULL, 0, '3:54:33'),
 ('W5e9ef323b70e0', 'lect28', 'paid', 'v6 (2).mp4', 'uploads/v6 (2).mp4', '17018265', 'mp4', NULL, NULL, NULL, 0, '3:54:33'),
 ('W5e9ef323d3261', 'lect28', 'paid', 'v3.mp4', 'uploads/v3.mp4', '17018265', 'mp4', NULL, NULL, NULL, 0, '3:54:33'),
-('W5e9efdc900359', 'lect3', 'paid', 'v3.mp4', 'uploads/v3.mp4', '17018265', 'mp4', NULL, NULL, NULL, 0, '3:54:33');
+('W5e9efdc900359', 'lect3', 'paid', 'v3.mp4', 'uploads/v3.mp4', '17018265', 'mp4', NULL, NULL, NULL, 0, '3:54:33'),
+('W5ef71b3fe1196', 'lect47', 'paid', 'v1.mp4', 'uploads/v1.mp4', '17018265', 'mp4', NULL, NULL, NULL, 0, '3:54:33');
 
 -- --------------------------------------------------------
 
@@ -7234,7 +7506,7 @@ INSERT INTO `videos` (`videoid`, `nodeid`, `type`, `name`, `url`, `size`, `video
 --
 DROP TABLE IF EXISTS `article_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `article_view`  AS  select `article`.`id` AS `id`,`article`.`postid` AS `postid`,`article`.`title` AS `title`,`article`.`slug` AS `slug`,`article`.`created_by` AS `created_by`,`article`.`content` AS `content`,`article`.`public_at` AS `public_at`,`article`.`is_publish` AS `is_publish`,`article`.`deleted` AS `deleted`,`article`.`created_at` AS `created_at`,`user_details`.`user_id` AS `user_id`,`user_details`.`name` AS `name`,`thumbnail`.`thumb` AS `thumb`,`thumbnail`.`image` AS `image` from ((`article` left join `user_details` on(`article`.`created_by` = `user_details`.`user_id`)) left join `thumbnail` on(`article`.`postid` = convert(`thumbnail`.`root` using utf8))) group by `article`.`postid` order by `article`.`created_at` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `article_view`  AS  select `article`.`id` AS `id`,`article`.`postid` AS `postid`,`article`.`title` AS `title`,`article`.`slug` AS `slug`,`article`.`created_by` AS `created_by`,`article`.`content` AS `content`,`article`.`public_at` AS `public_at`,`article`.`is_publish` AS `is_publish`,`article`.`deleted` AS `deleted`,`article`.`created_at` AS `created_at`,`user_details`.`user_id` AS `user_id`,`user_details`.`name` AS `name`,`thumbnail`.`thumb` AS `thumb`,`thumbnail`.`image` AS `image` from ((`article` left join `user_details` on((`article`.`created_by` = `user_details`.`user_id`))) left join `thumbnail` on((`article`.`postid` = convert(`thumbnail`.`root` using utf8)))) group by `article`.`postid` order by `article`.`created_at` desc ;
 
 -- --------------------------------------------------------
 
@@ -7252,496 +7524,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `users`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `users`  AS  select `logme`.`logid` AS `logid`,`logme`.`email` AS `email`,`logme`.`phone` AS `phone`,`logme`.`role` AS `role`,`logme`.`status` AS `status`,`logme`.`joindate` AS `joindate`,`user_details`.`name` AS `name`,`user_details`.`details` AS `details`,`thumbnail`.`thumb` AS `thumb`,`thumbnail`.`image` AS `image`,group_concat(`roles_users`.`role_id` separator ',') AS `role_id`,group_concat(`roles`.`name` separator ',') AS `role_name`,`logme`.`deleted` AS `deleted` from ((((`logme` join `user_details` on(`logme`.`logid` = `user_details`.`user_id`)) left join `thumbnail` on(`logme`.`logid` = `thumbnail`.`root`)) left join `roles_users` on(`logme`.`logid` = `roles_users`.`user_id`)) left join `roles` on(`roles`.`id` = `roles_users`.`role_id`)) group by `logme`.`logid` ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `address`
---
-ALTER TABLE `address`
-  ADD PRIMARY KEY (`address_id`);
-
---
--- Indexes for table `aim`
---
-ALTER TABLE `aim`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `answers`
---
-ALTER TABLE `answers`
-  ADD PRIMARY KEY (`ansid`),
-  ADD KEY `question` (`question`);
-
---
--- Indexes for table `article`
---
-ALTER TABLE `article`
-  ADD PRIMARY KEY (`postid`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cities`
---
-ALTER TABLE `cities`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `course`
---
-ALTER TABLE `course`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `course_id` (`course_id`);
-
---
--- Indexes for table `course_meta`
---
-ALTER TABLE `course_meta`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `docfile`
---
-ALTER TABLE `docfile`
-  ADD PRIMARY KEY (`docid`),
-  ADD KEY `nodeid` (`nodeid`);
-
---
--- Indexes for table `gallery`
---
-ALTER TABLE `gallery`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`(3072));
-
---
--- Indexes for table `indexing`
---
-ALTER TABLE `indexing`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `root` (`root`),
-  ADD KEY `port` (`port`);
-
---
--- Indexes for table `keys`
---
-ALTER TABLE `keys`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lesson`
---
-ALTER TABLE `lesson`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `lesson_id` (`lesson_id`) USING BTREE;
-
---
--- Indexes for table `library`
---
-ALTER TABLE `library`
-  ADD PRIMARY KEY (`libid`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `log`
---
-ALTER TABLE `log`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`user_id`);
-
---
--- Indexes for table `logme`
---
-ALTER TABLE `logme`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `role` (`role`);
-
---
--- Indexes for table `logs`
---
-ALTER TABLE `logs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`orderid`),
-  ADD KEY `userid` (`userid`);
-
---
--- Indexes for table `order_meta`
---
-ALTER TABLE `order_meta`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `order_id` (`order_id`);
-
---
--- Indexes for table `payments`
---
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`payment`),
-  ADD KEY `userid` (`userid`),
-  ADD KEY `orderid` (`orderid`);
-
---
--- Indexes for table `permissions`
---
-ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `permission_roles`
---
-ALTER TABLE `permission_roles`
-  ADD PRIMARY KEY (`role_id`,`permission_id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `product_id` (`product_id`),
-  ADD KEY `product` (`product`);
-
---
--- Indexes for table `product_meta`
---
-ALTER TABLE `product_meta`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `questions`
---
-ALTER TABLE `questions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `qusid` (`qusid`) USING BTREE;
-
---
--- Indexes for table `question_meta`
---
-ALTER TABLE `question_meta`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `ques` (`qusid`);
-
---
--- Indexes for table `results`
---
-ALTER TABLE `results`
-  ADD PRIMARY KEY (`result_id`),
-  ADD KEY `test_id` (`test_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UK_user_roles_role_Name` (`name`);
-
---
--- Indexes for table `roles_users`
---
-ALTER TABLE `roles_users`
-  ADD PRIMARY KEY (`user_id`,`role_id`);
-
---
--- Indexes for table `setting`
---
-ALTER TABLE `setting`
-  ADD PRIMARY KEY (`setting_id`),
-  ADD KEY `setting_name` (`setting_name`);
-
---
--- Indexes for table `states`
---
-ALTER TABLE `states`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `subject_id` (`subject_id`);
-
---
--- Indexes for table `subject_meta`
---
-ALTER TABLE `subject_meta`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tag` (`title`);
-
---
--- Indexes for table `tests`
---
-ALTER TABLE `tests`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `testid` (`testid`) USING BTREE;
-
---
--- Indexes for table `thumbnail`
---
-ALTER TABLE `thumbnail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `root` (`root`);
-
---
--- Indexes for table `users_course`
---
-ALTER TABLE `users_course`
-  ADD PRIMARY KEY (`assign_id`);
-
---
--- Indexes for table `user_aim`
---
-ALTER TABLE `user_aim`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_details`
---
-ALTER TABLE `user_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `videos`
---
-ALTER TABLE `videos`
-  ADD PRIMARY KEY (`videoid`),
-  ADD KEY `nodeid` (`nodeid`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `address`
---
-ALTER TABLE `address`
-  MODIFY `address_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `aim`
---
-ALTER TABLE `aim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `article`
---
-ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `cities`
---
-ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5742;
-
---
--- AUTO_INCREMENT for table `course`
---
-ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `course_meta`
---
-ALTER TABLE `course_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT for table `gallery`
---
-ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
-
---
--- AUTO_INCREMENT for table `indexing`
---
-ALTER TABLE `indexing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=326;
-
---
--- AUTO_INCREMENT for table `keys`
---
-ALTER TABLE `keys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `lesson`
---
-ALTER TABLE `lesson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `log`
---
-ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
-
---
--- AUTO_INCREMENT for table `logme`
---
-ALTER TABLE `logme`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100165;
-
---
--- AUTO_INCREMENT for table `logs`
---
-ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
-
---
--- AUTO_INCREMENT for table `message`
---
-ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `orderid` int(6) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_meta`
---
-ALTER TABLE `order_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `product_meta`
---
-ALTER TABLE `product_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT for table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `question_meta`
---
-ALTER TABLE `question_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `results`
---
-ALTER TABLE `results`
-  MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `setting`
---
-ALTER TABLE `setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `states`
---
-ALTER TABLE `states`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `subject_meta`
---
-ALTER TABLE `subject_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT for table `tags`
---
-ALTER TABLE `tags`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tests`
---
-ALTER TABLE `tests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `thumbnail`
---
-ALTER TABLE `thumbnail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
-
---
--- AUTO_INCREMENT for table `users_course`
---
-ALTER TABLE `users_course`
-  MODIFY `assign_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `user_aim`
---
-ALTER TABLE `user_aim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `user_details`
---
-ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `users`  AS  select `logme`.`logid` AS `logid`,`logme`.`email` AS `email`,`logme`.`phone` AS `phone`,`logme`.`role` AS `role`,`logme`.`status` AS `status`,`logme`.`joindate` AS `joindate`,`user_details`.`name` AS `name`,`user_details`.`details` AS `details`,`thumbnail`.`thumb` AS `thumb`,`thumbnail`.`image` AS `image`,group_concat(`roles_users`.`role_id` separator ',') AS `role_id`,group_concat(`roles`.`name` separator ',') AS `role_name`,`logme`.`deleted` AS `deleted` from ((((`logme` join `user_details` on((`logme`.`logid` = `user_details`.`user_id`))) left join `thumbnail` on((`logme`.`logid` = `thumbnail`.`root`))) left join `roles_users` on((`logme`.`logid` = `roles_users`.`user_id`))) left join `roles` on((`roles`.`id` = `roles_users`.`role_id`))) group by `logme`.`logid` ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

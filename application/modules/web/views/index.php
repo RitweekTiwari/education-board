@@ -59,7 +59,7 @@
         <li><a href="<?php echo base_url('counselling'); ?>"><i class="uil-file-alt"></i> <span> Counselling </span></a> </li>
         <li><a href="<?php echo base_url('feedback'); ?>"><i class="uil-rss-interface"></i> <span> Feedback </span></a> </li>
         <li><a href="<?php echo base_url('faq'); ?>"><i class="uil-book-alt"></i> <span> FAQ </span></a> </li>
-
+        <li><a href="<?php echo base_url('contact'); ?>">Contact us</a></li>
       </ul>
     </div>
   </div>

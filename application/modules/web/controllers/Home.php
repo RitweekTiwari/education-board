@@ -238,7 +238,36 @@ class Home extends CI_Controller {
         $data['main_content'] = $this->load->view('courseDetails', $data, true);
         $this->load->view('index', $data);
     }
-
+	public function send_message()
+	{
+		if ($_POST) {
+			$data1 = $this->security->xss_clean($_POST);
+			if(isset($data1['mobile'])){
+				$mobile= $data1['mobile'];	
+			}else{
+				$mobile = 0;
+			}
+			$message = [
+				'name' => $data1['name'],
+				'type'=> $data1['type'],
+				'user_id' => $data1['user'],
+				'email' => $data1['email'],
+				'body' => $data1['comment'],
+				'mobile' => $mobile,
+			];
+			$id = $this->common_model->insert($message, 'messages');
+			if ($id) {
+				$this->session->set_flashdata(array('error' => 0, 'msg' => 'Message sent '));
+				redirect($_SERVER['HTTP_REFERER'], 'refresh');
+			} else {
+				$this->session->set_flashdata(array('error' => 1, 'msg' => 'Failed'));
+				redirect($_SERVER['HTTP_REFERER'], 'refresh');
+			}
+		} else {
+			$this->session->set_flashdata(array('error' => 1, 'msg' => 'Request not Allowed'));
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		}
+	}
     public function event(){
         $data = array();
         $data['page'] = 'Event';

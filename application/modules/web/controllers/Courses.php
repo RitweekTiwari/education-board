@@ -107,7 +107,30 @@ class Courses extends CI_Controller {
 			$output = array();
 			$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
+	public function Add_review()
+	{
+		if ($_POST) {
 
+			$data = $this->security->xss_clean($_POST);
+
+			$course = [
+				'course_id' => $data['course'],
+				'rating' => $data['rating'],
+				'user_id' => $data['user'],
+				'comment' => $data['comment']
+			];
+
+			$this->common_model->insert($course, 'course_review');
+			$review = $this->course_model->get_average_review($data['course']);
+
+			$this->common_model->update(array('review' => $review['rating'], 'review_counter' => $review['total']), 'course_id', $data['course'], 'course');
+
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		} else {
+			$this->session->set_flashdata(array('error' => 1, 'msg' => 'Request not Allowed'));
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		}
+	}
 	public function intro($id){
 		$data = array();
 		$output = $this->course_model->select_by_id($id);
@@ -118,7 +141,8 @@ class Courses extends CI_Controller {
 			];
 
 			$data['course'] = $this->course_model->select_course_single($id);
-
+			$data['review'] = $this->course_model->get_review($id);
+			$data['review_summary']=$this->course_model->get_rating_summary($id);
 			$data['main_content'] = $this->load->view('courses/course-intro', $data, true);
 			$this->load->view('index', $data);
 		} else {

@@ -130,16 +130,39 @@ function getMaxId(){
       }
 
       public function select_course_single($id){
-        $sql = "SELECT course.*, thumbnail.image, GROUP_CONCAT(tag.port) AS tags, GROUP_CONCAT(category.port) AS category FROM course
+        $sql = "SELECT course.*, thumbnail.image, GROUP_CONCAT(tag.port) AS tags, GROUP_CONCAT(category.port) AS category,products.price,products.discount FROM course
                 LEFT JOIN indexing AS tag ON course.course_id = tag.root AND tag.type = 'tag'
                 LEFT JOIN indexing AS category ON course.course_id = category.root AND category.type = 'category'
                 LEFT JOIN thumbnail ON course.course_id = thumbnail.root
+                LEFT JOIN product_meta pm ON pm.source = course.course_id
+                LEFT JOIN products  ON pm.product_id = products.product_id
                 WHERE course.course_id = '{$id}'
                 AND  course.deleted = 0";
         $query = $this->db->query($sql);
         return $query->row();
       }
-
+  public  function get_review($course){
+    $this->db->select('course_review.comment,rating,user_details.user_id,user_details.name,roles_users.role_id as type');
+    $this->db->from('course_review');
+    $this->db->where('course_id',$course);
+    $this->db->join('user_details', 'user_details.user_id=course_review.user_id');
+    $this->db->join('roles_users', 'roles_users.user_id=course_review.user_id');
+    $result = $this->db->get();
+    return $result->result();
+    }
+  
+  public  function get_rating_summary($id)
+  {
+    for($i=1;$i<6;$i++){
+    $this->db->select('count(rating) as rating');
+    $this->db->from('course_review');
+    $this->db->where('course_id', $id);
+    $this->db->where('rating', $i);
+    $data[$i] = $this->db->get()->row()->rating;
+    }
+    //print_r($data);exit;
+    return $data;
+  }
       public function get_courses_by_name($name){
         $this->db->select('course_id AS id, name AS text');
         $this->db->from('course');
@@ -147,7 +170,21 @@ function getMaxId(){
         $result = $this->db->get();
         return $result->result();
       }
+  
+  public function get_average_review($id)
+  {
+    $this->db->select('round(avg(rating),2) as rating');
+    $this->db->from('course_review');
+    $this->db->where('course_id', $id);
+    $data['rating'] =$this->db->get()->row()->rating;
+    $this->db->select('count(rating) as total');
+    $this->db->from('course_review');
+    $this->db->where('course_id', $id );
 
+    $data['total'] = $this->db->get()->row()->total;
+    //print_r($data);exit;
+    return $data;
+  }
       public function get_count($table, $level) {
         if ($level == 'all') {
           return $this->db->where( 'is_publish', 1 )->where( 'deleted',  0 )->count_all_results($table);
