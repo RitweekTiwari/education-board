@@ -30,7 +30,7 @@ class Home extends CI_Controller {
 				$data['slider'] = json_decode($slider_value, true);
 
 				$data['category'] = $this->common_model->home_category();
-
+			
 				$data['trending'] = $this->common_model->home_trending();
 				$data['test'] = $this->common_model->select('tests');
 				$data['article'] = $this->common_model->select('article');

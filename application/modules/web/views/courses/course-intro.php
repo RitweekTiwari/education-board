@@ -36,7 +36,7 @@
             <ul uk-switcher="connect: #course-intro-tab ;animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium">
               <li><a href="#">Overview</a></li>
               <li><a href="#">Curriculum</a></li>
-              <li><a href="#">FAQ</a></li>
+             
               <li><a href="#">Course Planning</a></li>
               <li><a href="#">Reviews</a></li>
             </ul>
@@ -85,112 +85,14 @@
 
           </li>
 
-          <!-- course Faq-->
-          <li>
-
-            <h4 class="my-4"> Course Faq</h4>
-
-            <ul class="course-faq" uk-accordion>
-
-              <li class="uk-open">
-                <a class="uk-accordion-title" href="#"> Html Introduction </a>
-                <div class="uk-accordion-content">
-                  <p> The primary goal of this quick start guide is to introduce you to
-                    Unreal
-                    Engine 4`s (UE4) development environment. By the end of this guide,
-                    you`ll
-                    know how to set up and develop C++ Projects in UE4. This guide shows
-                    you
-                    how
-                    to create a new Unreal Engine project, add a new C++ class to it,
-                    compile
-                    the project, and add an instance of a new class to your level. By
-                    the
-                    time
-                    you reach the end of this guide, you`ll be able to see your
-                    programmed
-                    Actor
-                    floating above a table in the level. </p>
-                </div>
-              </li>
-
-              <li>
-                <a class="uk-accordion-title" href="#"> Your First webpage</a>
-                <div class="uk-accordion-content">
-                  <p> The primary goal of this quick start guide is to introduce you to
-                    Unreal
-                    Engine 4`s (UE4) development environment. By the end of this guide,
-                    you`ll
-                    know how to set up and develop C++ Projects in UE4. This guide shows
-                    you
-                    how
-                    to create a new Unreal Engine project, add a new C++ class to it,
-                    compile
-                    the project, and add an instance of a new class to your level. By
-                    the
-                    time
-                    you reach the end of this guide, you`ll be able to see your
-                    programmed
-                    Actor
-                    floating above a table in the level. </p>
-                </div>
-              </li>
-
-              <li>
-                <a class="uk-accordion-title" href="#"> Some Special Tags </a>
-                <div class="uk-accordion-content">
-                  <p> The primary goal of this quick start guide is to introduce you to
-                    Unreal
-                    Engine 4`s (UE4) development environment. By the end of this guide,
-                    you`ll
-                    know how to set up and develop C++ Projects in UE4. This guide shows
-                    you
-                    how
-                    to create a new Unreal Engine project, add a new C++ class to it,
-                    compile
-                    the project, and add an instance of a new class to your level. By
-                    the
-                    time
-                    you reach the end of this guide, you`ll be able to see your
-                    programmed
-                    Actor
-                    floating above a table in the level. </p>
-                </div>
-              </li>
-
-              <li>
-                <a class="uk-accordion-title" href="#"> Html Introduction </a>
-                <div class="uk-accordion-content">
-                  <p> The primary goal of this quick start guide is to introduce you to
-                    Unreal
-                    Engine 4`s (UE4) development environment. By the end of this guide,
-                    you`ll
-                    know how to set up and develop C++ Projects in UE4. This guide shows
-                    you
-                    how
-                    to create a new Unreal Engine project, add a new C++ class to it,
-                    compile
-                    the project, and add an instance of a new class to your level. By
-                    the
-                    time
-                    you reach the end of this guide, you`ll be able to see your
-                    programmed
-                    Actor
-                    floating above a table in the level. </p>
-                </div>
-              </li>
-
-            </ul>
-
-          </li>
-
+          
           <!-- course Announcement-->
           <li>
             <h4> Course Planning </h4>
 
             <div class="user-details-card">
               <div class="user-details-card-avatar">
-                <img src="../assets/images/avatars/avatar-2.jpg" alt="">
+                <img src="<?php echo base_url('assets/images/avatars/avatar-2.jpg') ?>" alt="">
               </div>
               <div class="user-details-card-name">
                 Kalka Ias Team
@@ -231,20 +133,20 @@
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[5] / $course->review_counter) * 100);  ?>%"></div>
+                        <div class="bar_filler" style="width:<?php if ($course->review_counter != 0){ echo floor(($review_summary[5] / $course->review_counter) * 100);}else{ echo '0';}  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
                       <div class="star-rating"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>
                     </div>
                     <div class="review-avgs">
-                      <?php echo floor(($review_summary[5] / $course->review_counter) * 100);  ?> %
+                      <?php if ($course->review_counter != 0) {echo floor(($review_summary[5] / $course->review_counter) * 100);}else{ echo '0';}  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[4] / $course->review_counter) * 100);  ?>%"></div>
+                        <div class="bar_filler" style="width:<?php if ($course->review_counter != 0) {echo floor(($review_summary[4] / $course->review_counter) * 100);}else{ echo '0';}  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -252,13 +154,13 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      <?php echo floor(($review_summary[4] / $course->review_counter) * 100);  ?> %
+                      <?php if ($course->review_counter != 0) {echo floor(($review_summary[4] / $course->review_counter) * 100);}else{ echo '0';}  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[3] / $course->review_counter) * 100);  ?>%"></div>
+                        <div class="bar_filler" style="width:<?php if ($course->review_counter != 0) {echo floor(($review_summary[3] / $course->review_counter) * 100);}else{ echo '0';}  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -266,13 +168,13 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      <?php echo floor(($review_summary[3] / $course->review_counter) * 100);  ?> %
+                      <?php if ($course->review_counter != 0) {echo floor(($review_summary[3] / $course->review_counter) * 100);}else{ echo '0';}  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[2] / $course->review_counter) * 100);  ?>%"></div>
+                        <div class="bar_filler" style="width:<?php if ($course->review_counter != 0){ echo floor(($review_summary[2] / $course->review_counter) * 100);}else{ echo '0';}  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -280,13 +182,13 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      <?php echo floor(($review_summary[2] / $course->review_counter) * 100);  ?> %
+                      <?php if ($course->review_counter != 0) {echo floor(($review_summary[2] / $course->review_counter) * 100);}else{ echo '0';}  ?> %
                     </div>
                   </div>
                   <div class="review-summary-rating-wrap">
                     <div class="review-bars">
                       <div class="full_bar">
-                        <div class="bar_filler" style="width:<?php echo floor(($review_summary[1] / $course->review_counter) * 100);  ?>%"></div>
+                        <div class="bar_filler" style="width:<?php if ($course->review_counter != 0) {echo floor(($review_summary[1] / $course->review_counter) * 100);}else{ echo '0';}  ?>%"></div>
                       </div>
                     </div>
                     <div class="review-stars">
@@ -294,7 +196,7 @@
                       </div>
                     </div>
                     <div class="review-avgs">
-                      <?php echo floor(($review_summary[1] / $course->review_counter) * 100);  ?> %
+                      <?php if($course->review_counter!=0){echo floor(($review_summary[1] / $course->review_counter) * 100);}else{ echo '0';}  ?> %
                     </div>
                   </div>
 
@@ -319,7 +221,7 @@
                                                                               } ?></span>
                         <div class="comment-stars">
                           <div class="star-rating">
-                            <?php for ($i = 1; $i < $row->rating; $i++) { ?>
+                            <?php for ($i = 0; $i < $row->rating; $i++) { ?>
                               <span class="star">
                               <?php } ?></div>
                         </div>

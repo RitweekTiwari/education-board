@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/framework.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/main.css">
-
     <!-- icons
       ================================================== -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/icons.css">
@@ -34,7 +33,6 @@
 
 
     <script src="<?php echo base_url('optimum/js/google.lazy.load/lazysizes.min.js') ?>" charset="utf-8"></script>
-
 
     <!-- Anguler Js
         ================================================ -->
@@ -133,7 +131,9 @@
 
 </head>
 
+
 <body ng-app="educationbourd">
+
     <div class="loader-wrapper">
         <div class="loader"></div>
         <div class="loader-section section-left"></div>

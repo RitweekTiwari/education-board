@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 15, 2020 at 03:02 PM
+-- Generation Time: Jul 21, 2020 at 12:21 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -5960,6 +5960,11 @@ CREATE TABLE IF NOT EXISTS `course` (
   `review` decimal(5,2) NOT NULL,
   `review_counter` int(11) NOT NULL,
   `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `duration` int(5) NOT NULL,
+  `article` int(5) NOT NULL,
+  `certificate` tinyint(1) NOT NULL,
+  `lifetime` tinyint(1) NOT NULL,
+  `offline` tinyint(1) NOT NULL,
   `plan_description` text NOT NULL,
   `docid` varchar(64) NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
@@ -5970,21 +5975,23 @@ CREATE TABLE IF NOT EXISTS `course` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `course_id` (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`id`, `course_id`, `name`, `slug`, `review`, `review_counter`, `is_publish`, `plan_description`, `docid`, `description`, `course_type`, `created_by`, `created`, `last_update`, `deleted`) VALUES
-(22, 'kalka22', 'MPSI', 'SUB INSPECTOR', '0.00', 0, 1, '', '', 'SCORE 90 PERCENT IN MPSI EXAM', 'beginner', 'AKIASZ001', '2020-05-04 23:24:19', '2020-05-04 17:24:19', 0),
-(23, 'kalka23', 'CTET', 'CTET EXAM', '0.00', 0, 1, '', '', 'CTET SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:35:03', '2020-05-04 17:35:03', 0),
-(24, 'kalka24', 'UPSC IAS', 'UPSC EXAM', '0.00', 0, 1, '', '', 'UPSC IAS / IPS SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:44:39', '2020-05-04 17:44:39', 0),
-(25, 'kalka25', 'NEET', 'NEET SPECIAL', '0.00', 0, 1, '', '', 'HOW TO SCORE 600 PLUS IN NEET?', 'beginner', 'AKIASZ001', '2020-05-04 23:49:14', '2020-05-04 17:49:14', 0),
-(27, 'kalka27', 'MPPSC', 'MPPSC SPECIAL', '0.00', 0, 1, '', '', 'CRACK MPPSC IN FIRST ATTEMPT', 'entermidate', 'AKIASZ001', '2020-05-05 00:09:33', '2020-05-04 18:09:33', 0),
-(28, 'kalka28', 'VERG-3', '', '0.00', 0, 1, '', '', 'VALIDITY TILL SEP-19. ', 'beginner', 'AKIASZ001', '2020-06-16 23:51:05', '2020-06-16 17:51:05', 0),
-(29, 'kalka29', 'LADY SUPERVISOR', '', '0.00', 0, 1, '', '', 'LADY SUPERVISOR SPECIAL BATCH', 'beginner', 'AKIASZ001', '2020-06-18 00:57:23', '2020-06-17 18:57:23', 0),
-(30, 'kalka30', 'HSSC', 'HSSC', '0.00', 0, 1, 'Nam liber tempor cum soluta nobis eleifend option congue imperdiet doming id quod mazim placerat facer possim assum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\nLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.', 'doc5ef821a090cdc', '<p class=\"lead\" style=\"margin-bottom: 0.104167in; font-size: 1.25rem; color: rgb(41, 48, 59); font-family: gotham-rounded, &quot;helvetica neue&quot;, helvetica; background-color: rgb(237, 239, 240);\">Nam liber tempor cum soluta nobis eleifend option congue imperdiet doming id quod mazim placerat facer possim assum.</p><p style=\"margin-bottom: 0.104167in; color: rgb(41, 48, 59); font-family: gotham-rounded, &quot;helvetica neue&quot;, helvetica; font-size: 15px; background-color: rgb(237, 239, 240);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p style=\"margin-bottom: 0px; color: rgb(41, 48, 59); font-family: gotham-rounded, &quot;helvetica neue&quot;, helvetica; font-size: 15px; background-color: rgb(237, 239, 240);\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>', 'beginner', 'AKIASZ001', '2020-07-12 18:11:01', '2020-07-12 12:11:01', 0);
+INSERT INTO `course` (`id`, `course_id`, `name`, `slug`, `review`, `review_counter`, `is_publish`, `duration`, `article`, `certificate`, `lifetime`, `offline`, `plan_description`, `docid`, `description`, `course_type`, `created_by`, `created`, `last_update`, `deleted`) VALUES
+(22, 'kalka22', 'MPSI', 'SUB INSPECTOR', '4.00', 3, 1, 0, 0, 0, 0, 0, '', '', 'SCORE 90 PERCENT IN MPSI EXAM', 'beginner', 'AKIASZ001', '2020-05-04 23:24:19', '2020-05-04 17:24:19', 0),
+(23, 'kalka23', 'CTET', 'CTET EXAM', '0.00', 0, 1, 0, 0, 0, 0, 0, '', '', 'CTET SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:35:03', '2020-05-04 17:35:03', 0),
+(24, 'kalka24', 'UPSC IAS', 'UPSC EXAM', '0.00', 0, 1, 0, 0, 0, 0, 0, '', '', 'UPSC IAS / IPS SPECIAL CLASS', 'beginner', 'AKIASZ001', '2020-05-04 23:44:39', '2020-05-04 17:44:39', 0),
+(25, 'kalka25', 'NEET', 'NEET SPECIAL', '0.00', 0, 1, 0, 0, 0, 0, 0, '', '', 'HOW TO SCORE 600 PLUS IN NEET?', 'beginner', 'AKIASZ001', '2020-05-04 23:49:14', '2020-05-04 17:49:14', 0),
+(27, 'kalka27', 'MPPSC', 'MPPSC SPECIAL', '0.00', 0, 1, 0, 0, 0, 0, 0, '', '', 'CRACK MPPSC IN FIRST ATTEMPT', 'entermidate', 'AKIASZ001', '2020-05-05 00:09:33', '2020-05-04 18:09:33', 0),
+(28, 'kalka28', 'VERG-3', '', '0.00', 0, 1, 0, 0, 0, 0, 0, '', '', 'VALIDITY TILL SEP-19. ', 'beginner', 'AKIASZ001', '2020-06-16 23:51:05', '2020-06-16 17:51:05', 0),
+(29, 'kalka29', 'LADY SUPERVISOR', '', '0.00', 0, 1, 0, 0, 0, 0, 0, '', '', 'LADY SUPERVISOR SPECIAL BATCH', 'beginner', 'AKIASZ001', '2020-06-18 00:57:23', '2020-06-17 18:57:23', 0),
+(30, 'kalka30', 'HSSC', 'HSSC', '4.00', 2, 1, 8, 5, 1, 1, 0, 'Nam liber tempor cum soluta nobis eleifend option congue imperdiet doming id quod mazim placerat facer possim assum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\nLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.', 'doc5ef821a090cdc', '<p class=\"lead\" xss=removed>Nam liber tempor cum soluta nobis eleifend option congue imperdiet doming id quod mazim placerat facer possim assum.</p><p xss=removed>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p xss=removed>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>', 'beginner', 'AKIASZ001', '2020-07-12 18:11:01', '2020-07-12 12:11:01', 0),
+(31, 'kalka31', 'MPSSC', 'YOUR COURSE DESCRIPTION HERE', '0.00', 0, 1, 11, 9, 1, 1, 0, 'YOUR COURSE DESCRIPTION HERE', 'doc5ef821a090cdc', '<p>Add a Description here</p><p><br></p><p>YOUR COURSE DESCRIPTION HERE</p>', 'beginner', 'AKIASZ001', '2020-07-20 12:25:29', '2020-07-20 06:25:29', 0),
+(32, 'kalka32', 'Geography', 'zczxc', '0.00', 0, 1, 1, 1, 1, 0, 1, 'Add a Description here', 'doc5ef821a090cdc', 'Add a Description here', 'beginner', 'AKIASZ001', '2020-07-21 13:34:05', '2020-07-21 07:34:05', 0);
 
 -- --------------------------------------------------------
 
@@ -5999,7 +6006,7 @@ CREATE TABLE IF NOT EXISTS `course_meta` (
   `subid` varchar(32) NOT NULL,
   `serial` int(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `course_meta`
@@ -6023,7 +6030,37 @@ INSERT INTO `course_meta` (`id`, `course_id`, `subid`, `serial`) VALUES
 (48, 'kalka22', 'sub24', 2),
 (49, 'kalka22', 'sub21', 3),
 (52, 'kalka30', '1', 0),
-(53, 'kalka30', 'sub21', 1);
+(53, 'kalka30', 'sub21', 1),
+(54, 'kalka31', 'sub21', 0),
+(55, 'kalka31', 'sub19', 1),
+(56, 'kalka32', 'sub24', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_review`
+--
+
+DROP TABLE IF EXISTS `course_review`;
+CREATE TABLE IF NOT EXISTS `course_review` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rating` int(1) NOT NULL,
+  `course_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf32;
+
+--
+-- Dumping data for table `course_review`
+--
+
+INSERT INTO `course_review` (`id`, `rating`, `course_id`, `user_id`, `comment`) VALUES
+(17, 3, ' kalka30', ' AKIASZ001', 'xxcvxcvbxvb'),
+(18, 5, 'kalka30', 'AKIASZ001', 'gsvcxvxvxv'),
+(19, 4, 'kalka22', 'AKIASZ001', 'zvzvzvvzxv'),
+(20, 3, 'kalka22', 'AKIASZ001', 'cvxzvxvzx'),
+(21, 5, 'kalka22', 'AKIASZ001', 'cxvxvxvxvxcv');
 
 -- --------------------------------------------------------
 
@@ -6097,7 +6134,7 @@ CREATE TABLE IF NOT EXISTS `indexing` (
   PRIMARY KEY (`id`),
   KEY `root` (`root`),
   KEY `port` (`port`)
-) ENGINE=InnoDB AUTO_INCREMENT=392 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=403 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `indexing`
@@ -6233,8 +6270,13 @@ INSERT INTO `indexing` (`id`, `root`, `port`, `type`) VALUES
 (387, 'post21', '6', 'tag'),
 (388, 'post21', '17', 'category'),
 (389, 'post21', '18', 'category'),
-(390, 'kalka30', '7', 'tag'),
-(391, 'kalka30', '19', 'category');
+(394, 'kalka32', '5', 'tag'),
+(395, 'kalka32', '18', 'category'),
+(396, 'kalka32', '19', 'category'),
+(399, 'kalka31', '2', 'tag'),
+(400, 'kalka31', '19', 'category'),
+(401, 'kalka30', '7', 'tag'),
+(402, 'kalka30', '19', 'category');
 
 -- --------------------------------------------------------
 
@@ -6640,6 +6682,32 @@ INSERT INTO `message` (`id`, `key`, `code`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` enum('counselling','feedback') NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `mobile` int(11) NOT NULL,
+  `email` varchar(32) NOT NULL,
+  `body` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf32;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `type`, `name`, `user_id`, `mobile`, `email`, `body`) VALUES
+(1, 'feedback', 'Kalka Ias Team', 'AKIASZ001', 0, 'omie@gmail.com', 'bjkzbxvzbvmzbvmnznvmxvnvn'),
+(2, 'counselling', 'Kalka Ias Team', 'AKIASZ001', 2147483647, 'omie@gmail.com', 'zxczczczxc');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -6745,22 +6813,20 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `product_id` (`product_id`),
   KEY `product` (`product`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `product_id`, `product`, `price`, `discount`, `is_publish`, `tax_id`, `created_at`, `last_update`, `deleted`) VALUES
-(5, 'pro5', 'ias', 999.99, 999.99, 1, NULL, '2020-05-04 01:07:36', '2020-05-03 19:07:36', 0),
-(6, 'pro6', 'NEET', 0.00, 0.00, 1, NULL, '2020-05-04 16:30:50', '2020-05-04 10:30:50', 0),
 (7, 'pro7', 'MPSI HINDI', 0.00, 0.00, 1, NULL, '2020-05-04 23:30:25', '2020-05-04 17:30:25', 0),
 (8, 'pro8', 'CTET', 0.00, 0.00, 1, NULL, '2020-05-04 23:39:11', '2020-05-04 17:39:11', 0),
 (9, 'pro9', 'UPSC IAS', 0.00, 0.00, 1, NULL, '2020-05-04 23:47:35', '2020-05-04 17:47:35', 0),
 (10, 'pro10', 'NEET', 0.00, 0.00, 1, NULL, '2020-05-04 23:54:18', '2020-05-04 17:54:18', 0),
-(11, 'pro11', 'UP LEKPAL BHARTI', 0.00, 0.00, 1, NULL, '2020-05-05 00:04:09', '2020-05-04 18:04:09', 0),
 (12, 'pro12', 'MPPSC', 0.00, 0.00, 1, NULL, '2020-05-05 00:12:06', '2020-05-04 18:12:06', 0),
-(13, 'pro13', 'HSSC', 500.00, 10.00, 1, NULL, '2020-07-12 18:23:37', '2020-07-12 12:23:37', 0);
+(13, 'pro13', 'HSSC', 500.00, 10.00, 1, NULL, '2020-07-12 18:23:37', '2020-07-12 12:23:37', 0),
+(14, 'pro14', 'MPSSC', 500.00, 450.00, 1, NULL, '2020-07-20 12:41:41', '2020-07-20 06:41:41', 0);
 
 -- --------------------------------------------------------
 
@@ -6774,22 +6840,20 @@ CREATE TABLE IF NOT EXISTS `product_meta` (
   `product_id` varchar(9) NOT NULL,
   `source` varchar(9) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product_meta`
 --
 
 INSERT INTO `product_meta` (`id`, `product_id`, `source`) VALUES
-(22, 'pro5', 'kalka19'),
-(23, 'pro6', 'kalka21'),
 (24, 'pro7', 'kalka22'),
 (26, 'pro8', 'kalka23'),
 (27, 'pro9', 'kalka24'),
 (28, 'pro10', 'kalka25'),
-(29, 'pro11', 'kalka26'),
 (30, 'pro12', 'kalka27'),
-(31, 'pro13', 'kalka30');
+(31, 'pro13', 'kalka30'),
+(32, 'pro14', 'kalka22');
 
 -- --------------------------------------------------------
 
@@ -7227,7 +7291,7 @@ CREATE TABLE IF NOT EXISTS `thumbnail` (
   `image` text,
   PRIMARY KEY (`id`),
   KEY `root` (`root`)
-) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `thumbnail`
@@ -7325,7 +7389,8 @@ INSERT INTO `thumbnail` (`id`, `root`, `thumb`, `image`) VALUES
 (186, 'test4', 'uploads/images\\/medium/5366d4429f4c980417f196ec554a980a_medium-776x400.jpg', 'uploads/images\\/medium/5366d4429f4c980417f196ec554a980a_medium-776x400.jpg'),
 (197, 'lect47', 'undefined', 'undefined'),
 (198, 'post21', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg', 'uploads/images\\/medium/da84a88598115d851d5acb3ce5b51905_medium-3840x2160.jpg'),
-(199, 'kalka30', 'undefined', 'undefined');
+(200, 'pro14', 'undefined', 'undefined'),
+(201, 'kalka30', 'undefined', 'undefined');
 
 -- --------------------------------------------------------
 

@@ -38,7 +38,16 @@
        </div>
      </div>
    <?php endif; ?>
+   <div class="section-small pt-0">
+     <div class="uk-flex-middle uk-card uk-card-default uk-card-body" uk-grid>
+       <div class="uk-width-2-3@m">
+         <h1>Prep Smart. Score Better.</h1>
 
+         <p>Join India’s largest exam preparation platform.</p>
+       </div>
+       <div class="uk-width-1-3@m uk-flex-first"> <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="Image"> </div>
+     </div>
+   </div>
 
    <div class="container">
 
@@ -76,7 +85,7 @@
            </div>
            <div class="grid-slider-header-link">
 
-             <a href="course-path.html" class="button transparent uk-visible@m"> View all </a>
+             <a href="<?php echo base_url('courses'); ?>" class="button transparent uk-visible@m"> View all </a>
              <a href="#" class="slide-nav-prev" uk-slider-item="previous"></a>
              <a href="#" class="slide-nav-next" uk-slider-item="next"></a>
 
@@ -86,7 +95,7 @@
          <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-grid">
            <?php foreach ($category as $value) : ?>
              <li>
-               <a href="<?php echo base_url(); ?>" class="skill-card">
+               <a href="<?php echo base_url('courses'); ?>" class="skill-card">
                  <i class="icon-brand-angular skill-card-icon" style="color:#dd0031"></i>
                  <div>
                    <h2 class="skill-card-title"> <?php echo ucfirst($value['name']); ?> Courses</h2>
@@ -102,7 +111,17 @@
        </div>
 
      </div>
-
+     <div class="section-small pt-0">
+       <div class="uk-flex-middle uk-card uk-card-default uk-card-body" uk-grid>
+         <div class="uk-width-2-3@m">
+           <h4>Get Best Counselling By Our Expert Faculty and Achieve Your Dream </h4>
+           <h4>Expert Faculty से परामर्श करे आज ही</h4>
+           <p>Totally FREE of Cost </p>
+         </div>
+         <div class="uk-width-1-3@m uk-flex-first"> <img src="<?php echo base_url('assets/images/3.jpg'); ?>" alt="Image"> </div>
+         <a href="<?php echo base_url('counselling'); ?>" class='btn btn-primary'>Register Here</a>
+       </div>
+     </div>
      <div class="section-small pt-0">
 
        <div class="course-grid-slider" uk-slider="finite: true">
@@ -139,37 +158,37 @@
 
      </div>
 
+
      <div class="section-small pt-0">
+       <div class="uk-flex-middle uk-card uk-card-default uk-card-body" uk-grid>
+         <div class="uk-width-2-3@m">
+           <h1>Why Join KALKA IAS Zone Test Series :-</h1>
 
-       <div class="course-grid-slider" uk-slider="finite: true">
-
-         <div class="grid-slider-header">
-           <div>
-             <h4 class="uk-text-truncate"> <a href="<?php echo base_url('test'); ?>" class="text-muted">Current Affairs</a> </h4>
-           </div>
-           <div class="grid-slider-header-link">
-
-             <a href="<?php echo base_url('blogs'); ?>" class="button transparent uk-visible@m"> View all </a>
-             <a href="#" class="slide-nav-prev" uk-slider-item="previous"></a>
-             <a href="#" class="slide-nav-next" uk-slider-item="next"></a>
-
-           </div>
-         </div>
-         <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-grid">
-           <?php foreach ($article as $value) : ?>
+           <ul class="uk-list uk-list-bullet">
              <li>
-               <a href="<?php echo base_url(); ?>" class="skill-card">
-                 <i class="icon-brand-angular skill-card-icon" style="color:#dd0031"></i>
-                 <div>
-                   <h2 class="skill-card-title"> <?php echo ucfirst($value['title']); ?> </h2>
-                   <p class="skill-card-subtitle"> <?php echo $value['slug']; ?> 
-                   </p>
-                 </div>
-               </a>
+               Accuracy of answer
              </li>
-           <?php endforeach; ?>
-         </ul>
+             <li>
+               Based on latest exams
+             </li>
+             <li>
+               All india rank
+             </li>
+             <li>
+               Detail Solution of question
+             </li>
+             <li>
+               Regular updated question
+             </li>
+             <li>
+               Design by expert faculty
+             </li>
 
+           </ul>
+
+         </div>
+         <div class="uk-width-1-3@m uk-flex-first"> <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="Image"> </div>
+         <a href="<?php echo base_url('test'); ?>" class='btn btn-success'>Test Series</a>
        </div>
 
      </div>
@@ -194,7 +213,7 @@
 
          <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-grid" ng-controller="coursesController">
            <li ng-repeat='course in courses'>
-             <a href="<?php echo base_url('resume/') . '{{course.course_id}}' ?>">
+             <a href="<?php echo base_url('course/') . '{{course.course_id}}' ?>">
                <div class="course-card">
                  <div class="course-card-thumbnail ">
                    <img class="lazyload blur-up" src="{{course.image}}">
@@ -219,6 +238,78 @@
 
      </div>
 
+     <div class="section-small pt-0">
+
+       <div class="course-grid-slider" uk-slider="finite: true">
+
+         <div class="grid-slider-header">
+           <div>
+             <h4 class="uk-text-truncate"> Testimonials
+             </h4>
+           </div>
+           <div class="grid-slider-header-link">
+
+             <a href="" class="button transparent uk-visible@m"> View all </a>
+             <a href="#" class="slide-nav-prev" uk-slider-item="previous"></a>
+             <a href="#" class="slide-nav-next" uk-slider-item="next"></a>
+
+           </div>
+         </div>
+
+         <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-grid" ng-controller="coursesController">
+           <li>
+
+             <div class="course-card">
+               <div class="course-card-thumbnail ">
+                 <img class="lazyload blur-up rounded-circle" src="<?php echo base_url('assets/images/avatars/avatar-2.jpg') ?>">
+                 <span class="play-button-trigger"></span>
+               </div>
+               <div class="course-card-body text-center">
+                 <h4> Name </h4>
+                 <p> Content </p>
+                 <div class="course-card-footer">
+                   <h5> <i class="icon-feather-film"></i> Student </h5>
+
+                 </div>
+               </div>
+
+             </div>
+
+
+           </li>
+         </ul>
+
+       </div>
+
+     </div>
+     <div class="section-small pt-0">
+       <p>Kalka ias zone is an online/offline platform to turn your dreams into reality and get a best job in the government sector. Kalka ias zone provides daily current affairs, study material, notes, preparation tips, mock test, online coaching and more to help you crack the government job exams effortlessly. We provide you month-long structured coaching classes for competition exam preparation at affordable tuition fees, with an exclusive session for clearing doubts, ensuring that neither you nor the topics remain unattended.
+       </p>
+
+       <p>
+         Practice papers, online/offline coaching classes, online/offline test series and pdf notes are key for any competitive exam preparation. Thus, Kalka ias zone personalised your learning and provide all the required materials for Teaching, UPSC, MPPSC, S.I., VYAPAM, NEET and other competitive exams.
+       </p>
+       Our platform encourages your Online/Offline engagement with the Master Teachers. Revision notes and formula sheets are shared with you, for grasping the toughest concepts. Assignments, Regular works, Subjective & Objective Tests promote your regular practice of the topics. Sessions get recorded for you to access for quick revision later, just by a quick login to your account. Interactive approach establishes a well-deserved academic connect between you and Master Teachers.
+       </p>
+
+       <p>
+         Engaging online classrooms allow you to formulate your preparation strategy and get a real classroom environment. To put your progress in action, numerous practice questions with in-depth solutions are mapped here in accordance with the latest syllabus & exam pattern. 24*7 support by our faculties is provided to keep your productivity on track and spend your time wisely.
+       </p>
+
+       <p class='text-center'>
+         Therefore, download the Kalka ias zone app today to find your dream job and make your career in the government sector. Access the current affairs and stay updated along with brainstorming and collaborative notes to make progress towards a better position.
+       </p>
+       <div class="section-small pt-0">
+         <div class="uk-flex-middle uk-card uk-card-default uk-card-body" uk-grid>
+           <div class="uk-width-2-3@m">
+             <h1>Download our App</h1>
+
+             <p>Join India’s largest exam preparation platform.</p>
+           </div>
+           <div class="uk-width-1-3@m uk-flex-first"> <a href="https://play.google.com/store/apps/details?id=co.classplus.kalka "><img src="<?php echo base_url('assets/images/googleplay.png'); ?>" alt=""></a> </div>
+         </div>
+       </div>
+     </div>
      <!-- Footer  -->
      <?php
       get_footer();

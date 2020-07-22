@@ -40,7 +40,7 @@
 
     <!-- logo -->
     <div class="logo uk-visible@s">
-      <a href="<?php echo base_url('home'); ?>"> <i class=" uil-graduation-hat"></i> <span> KALKA IAS</span> </a>
+      <a href="<?php echo base_url('home'); ?>"> <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="logo"> KALKA IAS </a>
     </div>
     <div class="page-menu-inner" data-simplebar>
       <ul data-submenu-title="Browse Course">
@@ -48,18 +48,25 @@
         <li><a href="<?php echo base_url('courses'); ?>"><i class="uil-rss-interface"></i> <span> Courses </span></a> </li>
         <li><a href="<?php echo base_url('test'); ?>"><i class="uil-youtube-alt"></i> <span> Test Series </span></a> </li>
         <li><a href="<?php echo base_url('payment'); ?>"><i class="uil-book-alt"></i> <span> Payment </span></a> </li>
-        <li><a href="#"><i class="uil-play"></i> <span> Join Live </span></a> </li>
+        <li><a href=""><i class="uil-play"></i> <span> Join Live </span></a> </li>
         <li><a href="<?php echo base_url('pdf'); ?>"><i class="uil-book-alt"></i> <span> FREE PDF </span></a> </li>
 
 
       </ul>
       <hr>
       <ul data-submenu-title="More">
-        <li><a href=""><i class=" icon-brand-google-play"></i><span> Use Our App </span></a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=co.classplus.kalka "><i class=" icon-brand-google-play"></i><span> Use Our App </span></a></li>
         <li><a href="<?php echo base_url('counselling'); ?>"><i class="uil-file-alt"></i> <span> Counselling </span></a> </li>
         <li><a href="<?php echo base_url('feedback'); ?>"><i class="uil-rss-interface"></i> <span> Feedback </span></a> </li>
         <li><a href="<?php echo base_url('faq'); ?>"><i class="uil-book-alt"></i> <span> FAQ </span></a> </li>
-        <li><a href="<?php echo base_url('contact'); ?>">Contact us</a></li>
+        <li><a href="<?php echo base_url('contact'); ?>"><i class="uil-book-alt"></i>Contact us</a></li>
+        <li><a href="<?php echo base_url('about'); ?>"><i class="uil-book-alt"></i>About us</a></li>
+        <li><a href="<?php echo base_url('blogs'); ?>"><i class="uil-book-alt"></i>Our testimonials</a></li>
+        <li><a href="<?php echo base_url('about'); ?>"><i class="uil-book-alt"></i>Audio Notes</a></li>
+        <li><a href="<?php echo base_url('about'); ?>"><i class="uil-book-alt"></i>Free Ebook</a></li>
+        <li><a href="<?php echo base_url('about'); ?>"><i class="uil-book-alt"></i>Free Course </a></li>
+        <li><a href="<?php echo base_url('about'); ?>"><i class="uil-book-alt"></i>Previous year question paper</a></li>
+
       </ul>
     </div>
   </div>

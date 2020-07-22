@@ -9,160 +9,57 @@
             <article class="uk-card-default p-4 rounded">
                 <ul class="uk-list-divider uk-list-large uk-accordion" uk-accordion>
                     <li>
-                        <a class="uk-accordion-title" href="#">Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit?</a>
+                        <a class="uk-accordion-title" href="#">What is the validity of the course?</a>
                         <div class="uk-accordion-content">
-                            <p>Vivamus imperdiet venenatis est. Phasellus vitae mauris imperdiet,
-                                condimentum
-                                eros vel, ullamcorper turpis. Maecenas sed libero quis orci egestas vehicula
-                                fermentum id diam. In sodales quam quis mi mollis eleifend id sit amet
-                                velit.
-                                Sed ultricies condimentum magna, vel commodo dolor luctus in. Aliquam et
-                                orci
-                                nibh. Nunc purus metus, aliquam vitae venenatis sit amet, porta non est.
-                                Proin
-                                vehicula nisi eu molestie varius. Pellentesque semper ex diam, at tristique
-                                ipsum varius sed. Pellentesque non metus ullamcorper, iaculis nibh quis,
-                                facilisis lorem. Sed malesuada eu lacus sit amet feugiat. Aenean iaculis dui
-                                sed
-                                quam consectetur elementum.</p>
+                            <p> It will be valid till your exams.</p>
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Nullam massa sem, mollis ut luctus at,
-                            tincidunt
-                            a lorem?</a>
+                        <a class="uk-accordion-title" href="#"> How will I prepare Current Affairs</a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Aliquam sed dictum elit, quis consequat metus. Proin in mauris finibus urna
-                                lacinia laoreet sed id orci. Pellentesque volutpat tellus sit amet enim
-                                rutrum,
-                                vel eleifend metus consectetur. Sed lacinia urna a neque maximus placerat.
-                                Praesent blandit hendrerit dui non placerat. Sed malesuada sem sit amet arcu
-                                faucibus, sit amet accumsan nisl laoreet. Quisque auctor sit amet nisl
-                                rhoncus
-                                interdum. Nullam euismod odio sem, quis pulvinar purus gravida eget. Nullam
-                                molestie, lacus vel vehicula elementum, massa arcu bibendum lacus, vitae
-                                tempus
-                                justo orci id lectus. Duis justo neque, elementum eget ante in, condimentum
-                                condimentum ante. Maecenas quis eleifend risus. In hac habitasse platea
-                                dictumst. Nunc posuere ultrices dolor, at auctor lacus dignissim ut. Donec
-                                viverra imperdiet nisi, sit amet mattis massa pellentesque ac.</p>
+                            <p>You will be provided with Lectures and notes on Daily,Weekly & Monthly Basis</p>
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Aliquam pretium diam et ullamcorper
-                            malesuada?</a>
+                        <a class="uk-accordion-title" href="#">How many times lectures can be watched ?</a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Praesent feugiat lectus faucibus tellus congue pharetra. In viverra vehicula
-                                pellentesque. Etiam consectetur ultricies magna at bibendum. Sed posuere
-                                libero
-                                ut nulla ornare, faucibus pellentesque odio pulvinar. Vestibulum feugiat ex
-                                id
-                                ex elementum egestas. Integer laoreet mollis risus, id efficitur neque.
-                                Pellentesque quis dolor faucibus, ultrices tellus id, vestibulum neque. Sed
-                                eros
-                                purus, dignissim id fermentum ut, lacinia laoreet odio. Sed mi erat, aliquet
-                                at
-                                facilisis quis, laoreet in massa. Pellentesque eu massa accumsan, iaculis
-                                erat
-                                eu, tincidunt sem. Quisque id orci id dui congue pretium. Pellentesque
-                                iaculis,
-                                dolor aliquet tempor laoreet, enim metus tincidunt massa, ut porttitor sem
-                                dui
-                                sit amet arcu. Vestibulum sodales laoreet enim, sit amet vestibulum nisl
-                                porttitor a.</p>
+                            <p>You can access a video lecture many times.</p>
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Etiam suscipit at nisi eget auctor?</a>
+                        <a class="uk-accordion-title" href="#">Why is this a paid course?</a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Mauris id pellentesque metus. In quis arcu sed enim maximus pellentesque et
-                                eget
-                                velit. Etiam euismod enim vitae condimentum tristique.</p>
+                            <p>This course is based on complete classroom coaching experience, made better through online interactive delivery and rigorous curriculum. We charge for this because teachers invest significant time and energy in taking live classes and interacting with you. Students who take our courses find them extremely helpful to their preparation and qualify the exams .</p>
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Sed porta diam eget enim bibendum
-                            laoreet?</a>
+                        <a class="uk-accordion-title" href="#">How will the classes be conducted? What will happen if I miss a class ? </a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Donec molestie sem et tellus vestibulum venenatis. Quisque iaculis ornare
-                                luctus.
-                                Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-                                ridiculus mus. Morbi velit nibh, ullamcorper eu imperdiet id, rutrum quis
-                                mi.
-                                Donec eu aliquet lorem. Nulla at lectus turpis. Sed et diam ac lorem iaculis
-                                lacinia.</p>
+                            <p>you’ll be able to attend the live classes or watch the recordings.</p>
                         </div>
                     </li>
                 </ul>
             </article>
 
-            <h4 class="mt-4"> Terms & Conditions </h4>
+
             <article class="uk-card-default p-4 rounded">
                 <ul class="uk-list-divider uk-list-large uk-accordion" uk-accordion>
                     <li>
-                        <a class="uk-accordion-title" href="#">Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit?</a>
+                        <a class="uk-accordion-title" href="#">What are the class days and timings</a>
                         <div class="uk-accordion-content">
-                            <p>Vivamus imperdiet venenatis est. Phasellus vitae mauris imperdiet,
-                                condimentum
-                                eros vel, ullamcorper turpis. Maecenas sed libero quis orci egestas vehicula
-                                fermentum id diam. In sodales quam quis mi mollis eleifend id sit amet
-                                velit.
-                                Sed ultricies condimentum magna, vel commodo dolor luctus in. Aliquam et
-                                orci
-                                nibh. Nunc purus metus, aliquam vitae venenatis sit amet, porta non est.
-                                Proin
-                                vehicula nisi eu molestie varius. Pellentesque semper ex diam, at tristique
-                                ipsum varius sed. Pellentesque non metus ullamcorper, iaculis nibh quis,
-                                facilisis lorem. Sed malesuada eu lacus sit amet feugiat. Aenean iaculis dui
-                                sed
-                                quam consectetur elementum.</p>
+                            <p>Refer our study planner for more detail.</p>
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Nullam massa sem, mollis ut luctus at,
-                            tincidunt
-                            a lorem?</a>
+                        <a class="uk-accordion-title" href="#">How can I judge my preparation </a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Aliquam sed dictum elit, quis consequat metus. Proin in mauris finibus urna
-                                lacinia laoreet sed id orci. Pellentesque volutpat tellus sit amet enim
-                                rutrum,
-                                vel eleifend metus consectetur. Sed lacinia urna a neque maximus placerat.
-                                Praesent blandit hendrerit dui non placerat. Sed malesuada sem sit amet arcu
-                                faucibus, sit amet accumsan nisl laoreet. Quisque auctor sit amet nisl
-                                rhoncus
-                                interdum. Nullam euismod odio sem, quis pulvinar purus gravida eget. Nullam
-                                molestie, lacus vel vehicula elementum, massa arcu bibendum lacus, vitae
-                                tempus
-                                justo orci id lectus. Duis justo neque, elementum eget ante in, condimentum
-                                condimentum ante. Maecenas quis eleifend risus. In hac habitasse platea
-                                dictumst. Nunc posuere ultrices dolor, at auctor lacus dignissim ut. Donec
-                                viverra imperdiet nisi, sit amet mattis massa pellentesque ac.</p>
+                            <p>By giving test and by report card.</p>
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Aliquam pretium diam et ullamcorper
-                            malesuada?</a>
+                        <a class="uk-accordion-title" href="#">Do you provide any printed study material?</a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Praesent feugiat lectus faucibus tellus congue pharetra. In viverra vehicula
-                                pellentesque. Etiam consectetur ultricies magna at bibendum. Sed posuere
-                                libero
-                                ut nulla ornare, faucibus pellentesque odio pulvinar. Vestibulum feugiat ex
-                                id
-                                ex elementum egestas. Integer laoreet mollis risus, id efficitur neque.
-                                Pellentesque quis dolor faucibus, ultrices tellus id, vestibulum neque. Sed
-                                eros
-                                purus, dignissim id fermentum ut, lacinia laoreet odio. Sed mi erat, aliquet
-                                at
-                                facilisis quis, laoreet in massa. Pellentesque eu massa accumsan, iaculis
-                                erat
-                                eu, tincidunt sem. Quisque id orci id dui congue pretium. Pellentesque
-                                iaculis,
-                                dolor aliquet tempor laoreet, enim metus tincidunt massa, ut porttitor sem
-                                dui
-                                sit amet arcu. Vestibulum sodales laoreet enim, sit amet vestibulum nisl
-                                porttitor a.</p>
+                            <p>We do provide pdfs in the study material which you can read online or decide to print.Test series will be included.</p>
                         </div>
                     </li>
                     <li>
@@ -174,110 +71,29 @@
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Sed porta diam eget enim bibendum
-                            laoreet?</a>
+                        <a class="uk-accordion-title" href="#"> How to buy the course?</a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Donec molestie sem et tellus vestibulum venenatis. Quisque iaculis ornare
-                                luctus.
-                                Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-                                ridiculus mus. Morbi velit nibh, ullamcorper eu imperdiet id, rutrum quis
-                                mi.
-                                Donec eu aliquet lorem. Nulla at lectus turpis. Sed et diam ac lorem iaculis
-                                lacinia.</p>
+                            <p>You can click on buy-now and use online payment (net banking/cards/UPI) to buy the course. For further assistance, please use the request call-back option.</p>
                         </div>
                     </li>
                 </ul>
             </article>
 
-            <h4 class="mt-4">Code of Conduct</h4>
+
             <article class="uk-card-default p-4 rounded">
                 <ul class="uk-list-divider uk-list-large uk-accordion" uk-accordion>
                     <li>
-                        <a class="uk-accordion-title" href="#">Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit?</a>
+                        <a class="uk-accordion-title" href="#">What are the hardware requirements to join this course?</a>
                         <div class="uk-accordion-content">
-                            <p>Vivamus imperdiet venenatis est. Phasellus vitae mauris imperdiet,
-                                condimentum
-                                eros vel, ullamcorper turpis. Maecenas sed libero quis orci egestas vehicula
-                                fermentum id diam. In sodales quam quis mi mollis eleifend id sit amet
-                                velit.
-                                Sed ultricies condimentum magna, vel commodo dolor luctus in. Aliquam et
-                                orci
-                                nibh. Nunc purus metus, aliquam vitae venenatis sit amet, porta non est.
-                                Proin
-                                vehicula nisi eu molestie varius. Pellentesque semper ex diam, at tristique
-                                ipsum varius sed. Pellentesque non metus ullamcorper, iaculis nibh quis,
-                                facilisis lorem. Sed malesuada eu lacus sit amet feugiat. Aenean iaculis dui
-                                sed
-                                quam consectetur elementum.</p>
+                            <p>You need to have access to a very good, continuous internet connection to watch live classes and video recordings.You can call us at 7400501501 for any queries.</p>
                         </div>
                     </li>
                     <li>
-                        <a class="uk-accordion-title" href="#">Nullam massa sem, mollis ut luctus at,
-                            tincidunt
-                            a lorem?</a>
+                        <a class="uk-accordion-title" href="#"> Can I pay in installments?</a>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Aliquam sed dictum elit, quis consequat metus. Proin in mauris finibus urna
-                                lacinia laoreet sed id orci. Pellentesque volutpat tellus sit amet enim
-                                rutrum,
-                                vel eleifend metus consectetur. Sed lacinia urna a neque maximus placerat.
-                                Praesent blandit hendrerit dui non placerat. Sed malesuada sem sit amet arcu
-                                faucibus, sit amet accumsan nisl laoreet. Quisque auctor sit amet nisl
-                                rhoncus
-                                interdum. Nullam euismod odio sem, quis pulvinar purus gravida eget. Nullam
-                                molestie, lacus vel vehicula elementum, massa arcu bibendum lacus, vitae
-                                tempus
-                                justo orci id lectus. Duis justo neque, elementum eget ante in, condimentum
-                                condimentum ante. Maecenas quis eleifend risus. In hac habitasse platea
-                                dictumst. Nunc posuere ultrices dolor, at auctor lacus dignissim ut. Donec
-                                viverra imperdiet nisi, sit amet mattis massa pellentesque ac.</p>
+                            <p>You can call us at 7400501501 for this query. </p>
                         </div>
-                    </li>
-                    <li>
-                        <a class="uk-accordion-title" href="#">Aliquam pretium diam et ullamcorper
-                            malesuada?</a>
-                        <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Praesent feugiat lectus faucibus tellus congue pharetra. In viverra vehicula
-                                pellentesque. Etiam consectetur ultricies magna at bibendum. Sed posuere
-                                libero
-                                ut nulla ornare, faucibus pellentesque odio pulvinar. Vestibulum feugiat ex
-                                id
-                                ex elementum egestas. Integer laoreet mollis risus, id efficitur neque.
-                                Pellentesque quis dolor faucibus, ultrices tellus id, vestibulum neque. Sed
-                                eros
-                                purus, dignissim id fermentum ut, lacinia laoreet odio. Sed mi erat, aliquet
-                                at
-                                facilisis quis, laoreet in massa. Pellentesque eu massa accumsan, iaculis
-                                erat
-                                eu, tincidunt sem. Quisque id orci id dui congue pretium. Pellentesque
-                                iaculis,
-                                dolor aliquet tempor laoreet, enim metus tincidunt massa, ut porttitor sem
-                                dui
-                                sit amet arcu. Vestibulum sodales laoreet enim, sit amet vestibulum nisl
-                                porttitor a.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="uk-accordion-title" href="#">Etiam suscipit at nisi eget auctor?</a>
-                        <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Mauris id pellentesque metus. In quis arcu sed enim maximus pellentesque et
-                                eget
-                                velit. Etiam euismod enim vitae condimentum tristique.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="uk-accordion-title" href="#">Sed porta diam eget enim bibendum
-                            laoreet?</a>
-                        <div class="uk-accordion-content" hidden="" aria-hidden="true">
-                            <p>Donec molestie sem et tellus vestibulum venenatis. Quisque iaculis ornare
-                                luctus.
-                                Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-                                ridiculus mus. Morbi velit nibh, ullamcorper eu imperdiet id, rutrum quis
-                                mi.
-                                Donec eu aliquet lorem. Nulla at lectus turpis. Sed et diam ac lorem iaculis
-                                lacinia.</p>
-                        </div>
-                    </li>
+                  
                 </ul>
             </article>
         </div>
